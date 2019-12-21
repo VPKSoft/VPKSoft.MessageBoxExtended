@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2019 Petteri Kautonen
+Copyright(c) 2019 Petteri Kautonen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -19,3 +19,33 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+This is the simple tab-delimited localization file.
+As you can see only the "[]" tags and tab delimited key-value pairs matter for the localization.
+The tab-delimited text can also include comments, etc. by adding a new tab-delimited field.
+
+Use the '&' character to indicate the mnemonic character if the Alt-key is pressed within the dialog. 
+NOTE: that these must be unique to work but no errors are caused if they aren't unique.
+
+[en-US]
+txtButtonOk	&OK
+txtButtonNo	&No
+txtButtonYes	&Yes
+txtButtonCancel	&Cancel
+txtButtonRetry	&Retry
+txtButtonAbort	&Abort
+txtButtonYesToAll	Yes &to all
+txtButtonNoToAll	No t&o all
+txtButtonIgnore	&Ignore
+txtCheckBoxRememberAnswer	&Remember answer
+[fi-FI]
+txtButtonOk	&OK
+txtButtonNo	&Ei
+txtButtonYes	&Kyllä
+txtButtonCancel	&Peruuta
+txtButtonRetry	&Uudelleen
+txtButtonAbort	Keskey&tä
+txtButtonYesToAll	Kyllä k&aikkiin
+txtButtonNoToAll	E&i kaikkiin
+txtButtonIgnore	O&hita
+txtCheckBoxRememberAnswer	&Muista vastaus
