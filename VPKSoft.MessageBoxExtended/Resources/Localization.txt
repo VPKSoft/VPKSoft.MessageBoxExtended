@@ -38,6 +38,7 @@ txtButtonYesToAll	Yes &to all
 txtButtonNoToAll	No t&o all
 txtButtonIgnore	&Ignore
 txtCheckBoxRememberAnswer	&Remember answer
+txtPreviousPasswordInvalid	The given password was incorrect. Please try again.
 [fi-FI]
 txtButtonOk	&OK
 txtButtonNo	&Ei
@@ -49,3 +50,4 @@ txtButtonYesToAll	Kyllä k&aikkiin
 txtButtonNoToAll	E&i kaikkiin
 txtButtonIgnore	O&hita
 txtCheckBoxRememberAnswer	&Muista vastaus
+txtPreviousPasswordInvalid	Antamasi salasana oli virheellinen. Yritä uudelleen, kiitos.

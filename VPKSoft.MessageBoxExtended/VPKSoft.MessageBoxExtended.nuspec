@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/VPKSoft/VPKSoft.MessageBoxExtended</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Initial NuGet release.</releaseNotes>
+    <releaseNotes>Added a password dialog.</releaseNotes>
     <copyright>Copyright © VPKSoft 2019</copyright>
     <tags>dialog box messagebox winforms</tags>
     <license type="expression">MIT</license>
