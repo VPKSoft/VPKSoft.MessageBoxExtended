@@ -53,7 +53,7 @@ namespace TestApp
             MessageBoxBase.Localize("fi");
 
             MessageBox.Show(
-                MessageBoxQueryPassword.Show(this, "Anna salasana:", "Salasana", true, true));
+                MessageBoxQueryPassword.Show(this, "Anna salasana:", "Salasana", true, true, true));
         }
     }
 }

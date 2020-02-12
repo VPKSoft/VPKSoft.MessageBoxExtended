@@ -69,6 +69,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="TabDeliLocalization.cs" />
+    <Compile Include="Utility\PasswordMeasureStrength.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MessageBoxBase.resx">
@@ -91,5 +92,9 @@
   <ItemGroup>
     <None Include="Resources\Localization.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\color_slide.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

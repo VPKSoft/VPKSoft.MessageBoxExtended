@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using VPKSoft.MessageBoxExtended.Utility;
 
 // The stock icon (C)::https://www.pngguru.com/free-transparent-background-png-clipart-rbcyh
 
@@ -50,10 +51,11 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
         /// <param name="password">A password to set to the contents of the password </param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
         public static string Show(IWin32Window owner, string text, string caption,
-            Image icon, bool useMnemonic, bool givenPasswordInvalid, string password)
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password)
         {
             if (LocalizeOnCreate)
             {
@@ -73,8 +75,9 @@ namespace VPKSoft.MessageBoxExtended
 
                 messageBoxExtended.CancelButton = messageBoxExtended.ButtonCancel;
                 messageBoxExtended.AcceptButton = messageBoxExtended.ButtonOk;
+                messageBoxExtended.ShowPasswordStrength = showPasswordStrength;
 
-                messageBoxExtended.complainInvalidPassword = givenPasswordInvalid;
+                messageBoxExtended.ComplainInvalidPassword = givenPasswordInvalid;
 
                 messageBoxExtended.lbInvalidPasswordComplaint.Text = PreviousPasswordInvalid;
                 messageBoxExtended.tbPassword.Text = password;
@@ -106,8 +109,27 @@ namespace VPKSoft.MessageBoxExtended
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid)
         {
-            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, null);
+            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, false, null);
         }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength)
+        {
+            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, null);
+        }
+
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
         /// <summary>
@@ -122,7 +144,24 @@ namespace VPKSoft.MessageBoxExtended
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, bool givenPasswordInvalid)
         {
-            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, null);
+            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, false, null);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, and caption.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength)
+        {
+            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, showPasswordStrength, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -137,7 +176,7 @@ namespace VPKSoft.MessageBoxExtended
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic)
         {
-            return Show(owner, text, caption, null, useMnemonic, false, null);
+            return Show(owner, text, caption, null, useMnemonic, false, false, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -150,11 +189,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
         public static string Show(IWin32Window owner, string text, string caption)
         {
-            return Show(owner, text, caption, null, true, false, null);
+            return Show(owner, text, caption, null, true, false, false, null);
         }
 
+        private bool ComplainInvalidPassword { get; set; }
 
-        private bool complainInvalidPassword;
+        private bool ShowPasswordStrength { get; set; }
 
         /// <summary>
         /// Creates the buttons for the dialog box with the given <see cref="MessageBoxBase"/> enumeration value.
@@ -168,22 +208,48 @@ namespace VPKSoft.MessageBoxExtended
         private void tbPassword_TextChanged(object sender, EventArgs e)
         {
             ButtonOk.Enabled = !string.IsNullOrEmpty(tbPassword.Text);
+            DisplayPasswordScore();
         }
 
         private void MessageBoxQueryPassword_Shown(object sender, EventArgs e)
         {
             ButtonOk.Enabled = !string.IsNullOrEmpty(tbPassword.Text);
-            lbInvalidPasswordComplaint.Visible = complainInvalidPassword;
+            lbInvalidPasswordComplaint.Visible = ComplainInvalidPassword;
 
             tbPassword.Top = BaseSizeTop.Height + 6;
             lbInvalidPasswordComplaint.Top = tbPassword.Bottom + 6;
 
             var sizeY = BaseSizeTotal.Height + tbPassword.Height + 12 +
-                        (complainInvalidPassword ? lbInvalidPasswordComplaint.Height + 10 : 0);
+                        (ComplainInvalidPassword ? lbInvalidPasswordComplaint.Height + 10 : 0);
+
+            pbColorSlide.Visible = ShowPasswordStrength;
+            pnColorSlide.Visible = ShowPasswordStrength;
+
+            DisplayPasswordScore();
 
             ClientSize = new Size(ClientSize.Width, sizeY);
             tbPassword.Focus();
             tbPassword.SelectAll();
+        }
+
+        private void DisplayPasswordScore()
+        {
+            if (!ShowPasswordStrength)
+            {
+                return;
+            }
+
+            var passwordStrength = PasswordMeasureStrength.PasswordStrength(tbPassword.Text);
+            passwordStrength *= pbColorSlide.Width / 10.0;
+
+            var width = (int) passwordStrength;
+
+            pnColorSlide.Top = tbPassword.Bottom;
+            pbColorSlide.Top = tbPassword.Bottom;
+
+            pnColorSlide.Width = pbColorSlide.Width - width;
+            pnColorSlide.Left = pbColorSlide.Left + width;
+
         }
     }
 }
