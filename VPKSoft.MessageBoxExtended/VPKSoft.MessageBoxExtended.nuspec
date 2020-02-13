@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/VPKSoft/VPKSoft.MessageBoxExtended</projectUrl>
     <requireLicenseAcceptance>true</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Added a password dialog.</releaseNotes>
+    <releaseNotes>Added possibility to display a password strength meter in the password dialog. The password icon can now be changed.</releaseNotes>
     <copyright>Copyright © VPKSoft 2020</copyright>
     <tags>dialog box messagebox winforms</tags>
     <license type="expression">MIT</license>

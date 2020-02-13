@@ -82,6 +82,9 @@ namespace VPKSoft.MessageBoxExtended
                 messageBoxExtended.lbInvalidPasswordComplaint.Text = PreviousPasswordInvalid;
                 messageBoxExtended.tbPassword.Text = password;
 
+                messageBoxExtended.pbColorSlide.Image = PasswordStrengthSliderImage;
+                messageBoxExtended.pbMessageBoxIcon.Image = PasswordIconImage;
+
                 if (owner == null)
                 {
                     messageBoxExtended.ShowDialog();
@@ -205,6 +208,31 @@ namespace VPKSoft.MessageBoxExtended
             return new List<Button> {ButtonOk, ButtonCancel};
         }
 
+        // a field to hold the PasswordStrengthSliderImage property value..
+        private static Image _passwordStrengthSliderImage;
+
+        /// <summary>
+        /// Gets or sets the password strength indicator slider image used with the password dialog.
+        /// </summary>
+        public static Image PasswordStrengthSliderImage
+        {
+            get => _passwordStrengthSliderImage ?? Properties.Resources.color_slide;
+            set => _passwordStrengthSliderImage = value;
+        }
+
+        // a field to hold the PasswordIconImage property value..
+        private static Image _passwordIconImage;
+
+        /// <summary>
+        /// Gets or sets password icon to be used with the password dialog.
+        /// </summary>
+        public static Image PasswordIconImage
+        {
+            get => _passwordIconImage ?? Properties.Resources.password;
+            set => _passwordIconImage = value;
+        }
+
+
         private void tbPassword_TextChanged(object sender, EventArgs e)
         {
             ButtonOk.Enabled = !string.IsNullOrEmpty(tbPassword.Text);
@@ -232,6 +260,9 @@ namespace VPKSoft.MessageBoxExtended
             tbPassword.SelectAll();
         }
 
+        /// <summary>
+        /// Displays the password strength displaying a part of an image based to the password strength.
+        /// </summary>
         private void DisplayPasswordScore()
         {
             if (!ShowPasswordStrength)
