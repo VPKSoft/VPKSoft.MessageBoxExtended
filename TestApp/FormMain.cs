@@ -25,6 +25,7 @@ SOFTWARE.
 #endregion
 
 using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using VPKSoft.MessageBoxExtended;
 
@@ -54,6 +55,11 @@ namespace TestApp
 
             MessageBox.Show(
                 MessageBoxQueryPassword.Show(this, "Anna salasana:", "Salasana", true, true, true));
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -5,8 +5,16 @@ using System.Windows.Forms;
 
 namespace VPKSoft.MessageBoxExtended
 {
+    /// <summary>
+    /// An extended message box with a customizable icon and extended button and result set.
+    /// Implements the <see cref="VPKSoft.MessageBoxExtended.MessageBoxBase" />
+    /// </summary>
+    /// <seealso cref="VPKSoft.MessageBoxExtended.MessageBoxBase" />
     public partial class MessageBoxExtended : MessageBoxBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageBoxExtended"/> class.
+        /// </summary>
         public MessageBoxExtended()
         {
             InitializeComponent();

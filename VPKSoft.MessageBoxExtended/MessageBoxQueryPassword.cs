@@ -34,8 +34,16 @@ using VPKSoft.MessageBoxExtended.Utility;
 
 namespace VPKSoft.MessageBoxExtended
 {
+    /// <summary>
+    /// A dialog to query a password from the user.
+    /// Implements the <see cref="VPKSoft.MessageBoxExtended.MessageBoxBase" />
+    /// </summary>
+    /// <seealso cref="VPKSoft.MessageBoxExtended.MessageBoxBase" />
     public partial class MessageBoxQueryPassword : MessageBoxBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MessageBoxQueryPassword"/> class.
+        /// </summary>
         public MessageBoxQueryPassword()
         {
             InitializeComponent();

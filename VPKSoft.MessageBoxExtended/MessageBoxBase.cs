@@ -452,5 +452,21 @@ namespace VPKSoft.MessageBoxExtended
                 }
             }
         }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the possible OK button is enabled.
+        /// </summary>
+        protected bool OkButtonEnabled
+        {
+            get => ButtonOk != null && buttonOk.Enabled;
+
+            set
+            {
+                if (buttonOk != null)
+                {
+                    buttonOk.Enabled = value;
+                }
+            }
+        }
     }
 }
