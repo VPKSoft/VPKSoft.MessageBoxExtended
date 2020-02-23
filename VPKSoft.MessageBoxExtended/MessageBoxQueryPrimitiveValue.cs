@@ -836,7 +836,7 @@ namespace VPKSoft.MessageBoxExtended
         {
             if (typeof(T) == typeof(string))
             {
-                tbStringValue.Text = value.ToString();
+                tbStringValue.Text = value?.ToString();
             }
 
             if (typeof(T) == typeof(char))
