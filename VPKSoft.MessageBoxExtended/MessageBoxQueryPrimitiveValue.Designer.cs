@@ -33,6 +33,7 @@
             this.lbInvalidValidationText = new System.Windows.Forms.Label();
             this.nudNumericValue = new System.Windows.Forms.NumericUpDown();
             this.cmbDropDownValue = new System.Windows.Forms.ComboBox();
+            this.cbBooleanValue = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbMessageBoxIcon)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumericValue)).BeginInit();
             this.SuspendLayout();
@@ -68,7 +69,6 @@
             this.lbInvalidValidationText.Size = new System.Drawing.Size(198, 13);
             this.lbInvalidValidationText.TabIndex = 12;
             this.lbInvalidValidationText.Text = "An invalid validation error text goes here.";
-            this.lbInvalidValidationText.Visible = false;
             // 
             // nudNumericValue
             // 
@@ -94,10 +94,22 @@
             this.cmbDropDownValue.Visible = false;
             this.cmbDropDownValue.SelectedValueChanged += new System.EventHandler(this.genericValue_Changed);
             // 
+            // cbBooleanValue
+            // 
+            this.cbBooleanValue.AutoSize = true;
+            this.cbBooleanValue.Location = new System.Drawing.Point(16, 47);
+            this.cbBooleanValue.Name = "cbBooleanValue";
+            this.cbBooleanValue.Size = new System.Drawing.Size(15, 14);
+            this.cbBooleanValue.TabIndex = 15;
+            this.cbBooleanValue.UseVisualStyleBackColor = true;
+            this.cbBooleanValue.Visible = false;
+            this.cbBooleanValue.CheckedChanged += new System.EventHandler(this.genericValue_Changed);
+            // 
             // MessageBoxQueryPrimitiveValue
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.ClientSize = new System.Drawing.Size(451, 119);
+            this.Controls.Add(this.cbBooleanValue);
             this.Controls.Add(this.cmbDropDownValue);
             this.Controls.Add(this.nudNumericValue);
             this.Controls.Add(this.lbInvalidValidationText);
@@ -111,6 +123,7 @@
             this.Controls.SetChildIndex(this.lbInvalidValidationText, 0);
             this.Controls.SetChildIndex(this.nudNumericValue, 0);
             this.Controls.SetChildIndex(this.cmbDropDownValue, 0);
+            this.Controls.SetChildIndex(this.cbBooleanValue, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pbMessageBoxIcon)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudNumericValue)).EndInit();
             this.ResumeLayout(false);
@@ -125,5 +138,6 @@
         private System.Windows.Forms.Label lbInvalidValidationText;
         private System.Windows.Forms.NumericUpDown nudNumericValue;
         private System.Windows.Forms.ComboBox cmbDropDownValue;
+        private System.Windows.Forms.CheckBox cbBooleanValue;
     }
 }

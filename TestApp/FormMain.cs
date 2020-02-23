@@ -36,6 +36,7 @@ namespace TestApp
         public FormMain()
         {
             InitializeComponent();
+            MessageBoxQueryPrimitiveValue.ValidateTypeValue += MessageBoxQueryPrimitiveValue_ValidateTypeValue;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -57,9 +58,21 @@ namespace TestApp
                 MessageBoxQueryPassword.Show(this, "Anna salasana:", "Salasana", true, true, true));
         }
 
+        private string name = Environment.GetEnvironmentVariable("USERNAME");
+
         private void button3_Click(object sender, EventArgs e)
         {
+            MessageBoxQueryPrimitiveValue.Show(this, "Please give your first and last name", "First and last name",
+                MessageBoxIcon.Question, ref name);
+        }
 
+        private void MessageBoxQueryPrimitiveValue_ValidateTypeValue(object sender, VPKSoft.MessageBoxExtended.Events.TypeValueValidationEventArgs e)
+        {
+            if (e.TypeValue.ToString() != name)
+            {
+                e.IsValid = false;
+                e.ValidationErrorMessage = "Please type YOUR name!";
+            }
         }
     }
 }
