@@ -538,6 +538,7 @@ namespace VPKSoft.MessageBoxExtended
                 messageBoxQuery.pbMessageBoxIcon.Image = icon;
 
                 messageBoxQuery.cmbDropDownValue.Visible = true;
+                messageBoxQuery.FocusControl = messageBoxQuery.cmbDropDownValue;
 
                 if (valuesList != null)
                 {
@@ -841,7 +842,7 @@ namespace VPKSoft.MessageBoxExtended
 
             if (typeof(T) == typeof(char))
             {
-                tbStringValue.Text = value.ToString();
+                tbStringValue.Text = value?.ToString();
             }
 
             if (typeof(T) == typeof(bool))
@@ -851,14 +852,24 @@ namespace VPKSoft.MessageBoxExtended
 
             if (typeof(T) == typeof(DateTime))
             {
-                dtpDateTimeValue.Value = (DateTime)Convert.ChangeType(value, typeof(T));
+                if (value == null)
+                {
+                    dtpDateTimeValue.Value = DateTime.Now;
+                }
+                else
+                {
+                    dtpDateTimeValue.Value = (DateTime)Convert.ChangeType(value, typeof(T));
+                }
             }
 
-            if (IsGenericList(value))
+            if (IsGenericList(typeof(T)))
             {
-                foreach (var listValue in (IList)value)
+                if (value != null)
                 {
-                    cmbDropDownValue.Items.Add(listValue);
+                    foreach (var listValue in (IList) value)
+                    {
+                        cmbDropDownValue.Items.Add(listValue);
+                    }
                 }
             }
 
@@ -940,6 +951,7 @@ namespace VPKSoft.MessageBoxExtended
             if (IsGenericList(type))
             {
                 cmbDropDownValue.Visible = true;
+                FocusControl = cmbDropDownValue;
                 return;
             }
 
@@ -947,16 +959,24 @@ namespace VPKSoft.MessageBoxExtended
 
             switch (typeCode)
             {
-                case TypeCode.String: tbStringValue.Visible = true; return;
-                case TypeCode.DateTime: dtpDateTimeValue.Visible = true; return;
-                case TypeCode.Boolean: cbBooleanValue.Visible = true; return;
+                case TypeCode.String: tbStringValue.Visible = true;
+                    FocusControl = tbStringValue; return;
+
+                case TypeCode.DateTime: dtpDateTimeValue.Visible = true;
+                    FocusControl = dtpDateTimeValue; return;
+
+                case TypeCode.Boolean: cbBooleanValue.Visible = true;
+                    FocusControl = cbBooleanValue; return;
+
                 case TypeCode.Char: tbStringValue.Visible = true;
+                    FocusControl = tbStringValue;
                     tbStringValue.MaxLength = 1; return;
             }
 
             if (IsNumericType(type))
             {
                 nudNumericValue.Visible = true;
+                FocusControl = nudNumericValue;
 
                 if (IsFloatingPoint(type))
                 {
@@ -974,6 +994,11 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region PrivateProperties
+        /// <summary>
+        /// Gets or sets the editor control to be focused when the dialog is shown.
+        /// </summary>
+        private Control FocusControl { get; set; }
+
         /// <summary>
         /// Gets or sets the type of the value being queried by this dialog.
         /// </summary>
@@ -1000,6 +1025,12 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region InternalEvents
+        // focus to the visible control..
+        private void MessageBoxQueryPrimitiveValue_Shown(object sender, EventArgs e)
+        {
+            FocusControl?.Focus();
+        }
+
         // raise the ValidateTypeValue if subscribed..
         private void genericValue_Changed(object sender, EventArgs e)
         {

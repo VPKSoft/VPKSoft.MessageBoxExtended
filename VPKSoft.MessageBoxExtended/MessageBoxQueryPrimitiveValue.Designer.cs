@@ -116,6 +116,7 @@
             this.Controls.Add(this.dtpDateTimeValue);
             this.Controls.Add(this.tbStringValue);
             this.Name = "MessageBoxQueryPrimitiveValue";
+            this.Shown += new System.EventHandler(this.MessageBoxQueryPrimitiveValue_Shown);
             this.Controls.SetChildIndex(this.tbStringValue, 0);
             this.Controls.SetChildIndex(this.pbMessageBoxIcon, 0);
             this.Controls.SetChildIndex(this.lbText, 0);
