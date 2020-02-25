@@ -545,9 +545,8 @@ namespace VPKSoft.MessageBoxExtended
                     messageBoxQuery.cmbDropDownValue.Items.Add(listValue);
                 }
 
-                messageBoxQuery.cmbDropDownValue.SelectedItem = value;
                 messageBoxQuery.cmbDropDownValue.DropDownStyle = dropDownStyle;
-
+                messageBoxQuery.cmbDropDownValue.SelectedItem = value;
 
                 messageBoxQuery.SuspendValidation = false;
 
