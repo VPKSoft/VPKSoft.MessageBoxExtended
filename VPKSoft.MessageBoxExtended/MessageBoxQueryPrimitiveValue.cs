@@ -528,7 +528,7 @@ namespace VPKSoft.MessageBoxExtended
             using (var messageBoxQuery = new MessageBoxQueryPrimitiveValue())
             {
                 messageBoxQuery.InstancePrimitiveType = typeof(T);
-                messageBoxQuery.SetEditorByType(typeof(T), 0);
+                messageBoxQuery.SetEditorByType(valuesList.GetType(), 0);
 
 
                 messageBoxQuery.SetButtons(messageBoxQuery.CreateButtons(), useMnemonic);
@@ -540,12 +540,9 @@ namespace VPKSoft.MessageBoxExtended
                 messageBoxQuery.cmbDropDownValue.Visible = true;
                 messageBoxQuery.FocusControl = messageBoxQuery.cmbDropDownValue;
 
-                if (valuesList != null)
+                foreach (var listValue in (IList) valuesList)
                 {
-                    foreach (var listValue in (IList) valuesList)
-                    {
-                        messageBoxQuery.cmbDropDownValue.Items.Add(listValue);
-                    }
+                    messageBoxQuery.cmbDropDownValue.Items.Add(listValue);
                 }
 
                 messageBoxQuery.cmbDropDownValue.SelectedItem = value;
