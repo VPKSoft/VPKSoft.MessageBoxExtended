@@ -89,8 +89,10 @@
 
         #endregion
 
+        #region ProtectedFields
         protected System.Windows.Forms.FlowLayoutPanel flpButtons;
         protected System.Windows.Forms.Label lbText;
         protected System.Windows.Forms.PictureBox pbMessageBoxIcon;
+        #endregion
     }
 }

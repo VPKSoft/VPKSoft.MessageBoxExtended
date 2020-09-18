@@ -3,7 +3,7 @@
 namespace VPKSoft.MessageBoxExtended.Events
 {
     /// <summary>
-    /// Event arguments for the <see cref="MessageBoxQueryPrimitiveValue.ValidateTypeValue"/> event.
+    /// Event arguments for the <see cref="MessageBoxQueryPrimitiveValue{T}.ValidateTypeValue"/> event.
     /// Implements the <see cref="System.EventArgs" />
     /// </summary>
     /// <seealso cref="System.EventArgs" />

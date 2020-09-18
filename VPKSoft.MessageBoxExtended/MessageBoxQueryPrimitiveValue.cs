@@ -12,11 +12,13 @@ namespace VPKSoft.MessageBoxExtended
     /// A message box to query a primitive, decimal, a generic <see cref="List{T}"/> or a string value from the user.
     /// Implements the <see cref="VPKSoft.MessageBoxExtended.MessageBoxBase" />
     /// </summary>
+    /// <typeparam name="T">Type type of single value to query in the message box or the <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
     /// <seealso cref="VPKSoft.MessageBoxExtended.MessageBoxBase" />
-    public partial class MessageBoxQueryPrimitiveValue : MessageBoxBase
+    public partial class MessageBoxQueryPrimitiveValue<T> : MessageBoxBase
     {
+        #region ConstructorsPrimitive
         /// <summary>
-        /// Initializes a new instance of the <see cref="MessageBoxQueryPrimitiveValue"/> class.
+        /// Initializes a new instance of the <see cref="MessageBoxQueryPrimitiveValue{T}"/> class.
         /// </summary>
         public MessageBoxQueryPrimitiveValue()
         {
@@ -24,6 +26,681 @@ namespace VPKSoft.MessageBoxExtended
 
             lbInvalidValidationText.Text = string.Empty;
         }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, bool useMnemonic, string dateTimeFormatting,
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin, decimal upDownMax, 
+            string checkBoxText, Action<DialogResultExtended, bool, object> dialogResultAction) : this()
+        {
+            if (LocalizeOnCreate)
+            {
+                Localize();
+            }
+
+            // non-primitive type was requested..
+            if (!typeof(T).IsPrimitive && typeof(T) != 
+                typeof(string) && typeof(T) != 
+                typeof(decimal) &&
+                typeof(T) != typeof(DateTime)) 
+            {
+                throw new ArgumentException("The type to be queried must be a primitive type, a decimal, a DateTime or a string.");
+            }
+
+            DialogResultAction = dialogResultAction;
+
+            InstancePrimitiveType = typeof(T);
+            SetEditorByType(typeof(T), floatDecimals);
+
+            if (typeof(T) == typeof(DateTime)) // something special with date and/or time..
+            {
+                dtpDateTimeValue.Format = dateTimeFormat;
+                dtpDateTimeValue.CustomFormat = dateTimeFormatting;
+            }
+
+            SetButtons(CreateButtons(), useMnemonic);
+
+
+            lbText.Text = text;
+            base.Text = caption;
+            pbMessageBoxIcon.Image = icon;
+
+
+            cbBooleanValue.Text = checkBoxText;
+            nudNumericValue.Minimum = upDownMin;
+            nudNumericValue.Maximum = upDownMax == 0m ? 100m : upDownMax;
+
+            SetValue(value);
+
+            SuspendValidation = false;
+
+            value = GetValue();
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, bool useMnemonic, string dateTimeFormatting,
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText) : this(text, caption, icon, useMnemonic, dateTimeFormatting, floatDecimals,
+            dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText) : this(text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
+            floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText, Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
+            floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value) : this(text, caption, GetMessageBoxIcon(icon), true, dateTimeFormatting,
+        0, dateTimeFormat, ref value, 0M, 100M, "", null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption,
+            GetMessageBoxIcon(icon), true, dateTimeFormatting,
+            0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, ref T value) : this(text, caption, GetMessageBoxIcon(icon), true, null,
+            0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction) : this(
+            text, caption, GetMessageBoxIcon(icon), true, null,
+            0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, bool useMnemonic, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value) : this(text, caption, icon, useMnemonic,
+            dateTimeFormatting,
+            0, dateTimeFormat, ref value, 0M, 100M, "", null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, bool useMnemonic, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, icon, useMnemonic,
+            dateTimeFormatting,
+            0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax): this (text, caption, GetMessageBoxIcon(icon), true, null,
+            floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption,
+            GetMessageBoxIcon(icon), true, null,
+            floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value) : this(text, caption, icon, true, dateTimeFormatting,
+            0, dateTimeFormat, ref value, 0M, 100M, "", null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, icon, true, dateTimeFormatting,
+            0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, ref T value) : this(text, caption, icon, true, null,
+            0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, icon, true, null,
+            0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax) : this(text, caption, icon, true, null,
+            floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, icon, true, null,
+            floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction)
+        {
+        }
+        #endregion
+
+        #region ConstructorsPrimitiveList
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, IList valuesList, ref object value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this()
+        {
+            if (LocalizeOnCreate)
+            {
+                Localize();
+            }
+
+            // non-primitive type was requested..
+            if (!IsGenericList(valuesList))
+            {
+                throw new ArgumentException("The type to be queried must be a generic List{TList}.");
+            }
+
+            DialogResultAction = dialogResultAction;
+
+            InstancePrimitiveType = typeof(T);
+            SetEditorByType(valuesList.GetType(), 0);
+
+            SetButtons(buttons == MessageBoxButtonsExtended.OKCancel ? CreateButtons() : base.CreateButtons(buttons), useMnemonic);
+
+            lbText.Text = text;
+            base.Text = caption;
+            pbMessageBoxIcon.Image = icon;
+
+            cmbDropDownValue.Visible = true;
+            FocusControl = cmbDropDownValue;
+
+            foreach (var listValue in (IList) valuesList)
+            {
+                cmbDropDownValue.Items.Add(listValue);
+            }
+
+            cmbDropDownValue.DropDownStyle = dropDownStyle;
+
+            cmbDropDownValue.AutoCompleteMode = autoCompleteMode;
+            cmbDropDownValue.DisplayMember = displayMember ?? "";
+
+            cmbDropDownValue.DropDownStyle = dropDownStyle;
+            cmbDropDownValue.SelectedItem = value;
+
+            SuspendValidation = false;
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            this(text, caption, buttons, icon, useMnemonic, displayMember, dropDownStyle, autoCompleteMode, valuesList,
+                ref value, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            this(text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
+            GetMessageBoxIcon(icon), useMnemonic, displayMember,
+            dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(
+            string text, string caption, MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            this(text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember, dropDownStyle, autoCompleteMode,
+                valuesList, ref value)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(
+            string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
+            GetMessageBoxIcon(icon), true, displayMember,
+            dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            this(text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            Image icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) :
+            this(text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
+        {
+        }
+
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption, MessageBoxButtonsExtended buttons, Image icon,
+            string displayMember, ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList,
+            ref object value) : this(text, caption, buttons, icon, true, displayMember, dropDownStyle, autoCompleteMode,
+            valuesList, ref value, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons, icon, true,
+            displayMember,
+            dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption, MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            this(text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value)
+        {
+        }
+
+
+        /// <summary>
+        /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        public MessageBoxQueryPrimitiveValue(string text, string caption,
+            MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            Action<DialogResultExtended, bool, object> dialogResultAction) :
+            this(text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
+        {
+        }
+        #endregion
 
         #region ShowMethodsPrimitive
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -42,11 +719,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
-            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin = 0m, decimal upDownMax = 100m, 
-            string checkBoxText = "")
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin, decimal upDownMax, 
+            string checkBoxText,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             if (LocalizeOnCreate)
             {
@@ -62,33 +741,9 @@ namespace VPKSoft.MessageBoxExtended
                 throw new ArgumentException("The type to be queried must be a primitive type, a decimal, a DateTime or a string.");
             }
 
-            using (var messageBoxQuery = new MessageBoxQueryPrimitiveValue())
+            using (var messageBoxQuery = new MessageBoxQueryPrimitiveValue<T>(text, caption, icon, useMnemonic,
+                dateTimeFormatting, floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction)) 
             {
-                messageBoxQuery.InstancePrimitiveType = typeof(T);
-                messageBoxQuery.SetEditorByType(typeof(T), floatDecimals);
-
-                if (typeof(T) == typeof(DateTime)) // something special with date and/or time..
-                {
-                    messageBoxQuery.dtpDateTimeValue.Format = dateTimeFormat;
-                    messageBoxQuery.dtpDateTimeValue.CustomFormat = dateTimeFormatting;
-                }
-
-                messageBoxQuery.SetButtons(messageBoxQuery.CreateButtons(), useMnemonic);
-
-
-                messageBoxQuery.lbText.Text = text;
-                messageBoxQuery.Text = caption;
-                messageBoxQuery.pbMessageBoxIcon.Image = icon;
-
-
-                messageBoxQuery.cbBooleanValue.Text = checkBoxText;
-                messageBoxQuery.nudNumericValue.Minimum = upDownMin;
-                messageBoxQuery.nudNumericValue.Maximum = upDownMax == 0m ? 100m : upDownMax;
-
-                messageBoxQuery.SetValue(value);
-
-                messageBoxQuery.SuspendValidation = false;
-
                 if (owner == null)
                 {
                     messageBoxQuery.ShowDialog();
@@ -98,7 +753,7 @@ namespace VPKSoft.MessageBoxExtended
                     messageBoxQuery.ShowDialog(owner);
                 }
 
-                value = messageBoxQuery.GetValue<T>();
+                value = messageBoxQuery.GetValue();
 
                 return messageBoxQuery.Result;
             }
@@ -121,14 +776,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
-            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin = 0m,
-            decimal upDownMax = 100m,
-            string checkBoxText = "")
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText)
         {
             return Show(owner, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
-                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText);
+                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -144,12 +799,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(owner, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -164,12 +819,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(owner, text, caption, GetMessageBoxIcon(icon), true, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -182,11 +837,11 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, ref T value)
         {
             return Show(owner, text, caption, GetMessageBoxIcon(icon), true, null,
-                0, DateTimePickerFormat.Long, ref value);
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -202,12 +857,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
         {
             return Show(owner, text, caption, GetMessageBoxIcon(icon), true, null,
-                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null);
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -223,12 +878,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(owner, text, caption, icon, useMnemonic, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -243,12 +898,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(owner, text, caption, icon, true, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -261,11 +916,11 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, ref T value)
         {
             return Show(owner, text, caption, icon, true, null,
-                0, DateTimePickerFormat.Long, ref value);
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -281,12 +936,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
         {
             return Show(owner, text, caption, icon, true, null,
-                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null);
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -305,14 +960,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
-            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin = 0m,
-            decimal upDownMax = 100m,
-            string checkBoxText = "")
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText)
         {
             return Show(null, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
-                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText);
+                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -331,14 +986,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
-            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin = 0m,
-            decimal upDownMax = 100m,
-            string checkBoxText = "")
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText)
         {
             return Show(null, text, caption, icon, useMnemonic, dateTimeFormatting,
-                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText);
+                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -353,12 +1008,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(null, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -372,12 +1027,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(null, text, caption, GetMessageBoxIcon(icon), true, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -389,11 +1044,11 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, ref T value)
         {
             return Show(null, text, caption, GetMessageBoxIcon(icon), true, null,
-                0, DateTimePickerFormat.Long, ref value);
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -408,12 +1063,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
         {
             return Show(null, text, caption, GetMessageBoxIcon(icon), true, null,
-                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null);
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -428,12 +1083,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(null, text, caption, icon, useMnemonic, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -447,12 +1102,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             Image icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
         {
             return Show(null, text, caption, icon, true, dateTimeFormatting,
-                0, dateTimeFormat, ref value);
+                0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -464,11 +1119,11 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             Image icon, ref T value)
         {
             return Show(null, text, caption, icon, true, null,
-                0, DateTimePickerFormat.Long, ref value);
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -483,12 +1138,418 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             Image icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
         {
             return Show(null, text, caption, icon, true, null,
-                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null);
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
+                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxIcon icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, GetMessageBoxIcon(icon), true, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxIcon icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, GetMessageBoxIcon(icon), true, null,
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, GetMessageBoxIcon(icon), true, null,
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            Image icon, bool useMnemonic, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, icon, useMnemonic, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            Image icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, icon, true, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            Image icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, icon, true, null,
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            Image icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, icon, true, null,
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
+                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            Image icon, bool useMnemonic, string dateTimeFormatting,
+            int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
+            decimal upDownMax,
+            string checkBoxText, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, icon, useMnemonic, dateTimeFormatting,
+                floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, GetMessageBoxIcon(icon), useMnemonic, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxIcon icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, GetMessageBoxIcon(icon), true, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxIcon icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, GetMessageBoxIcon(icon), true, null,
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, GetMessageBoxIcon(icon), true, null,
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            Image icon, bool useMnemonic, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, icon, useMnemonic, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="dateTimeFormatting">An optional date and/or time formatting string in case a <see cref="DateTime"/> value is queried.</param>
+        /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            Image icon, string dateTimeFormatting,
+            DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, icon, true, dateTimeFormatting,
+                0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            Image icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, icon, true, null,
+                0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="floatDecimals">A number of decimals in case a floating point value is queried.</param>
+        /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
+        /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        public static DialogResultExtended Show(string text, string caption,
+            Image icon, int floatDecimals, ref T value, decimal upDownMin,
+            decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, icon, true, null,
+                floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction);
         }
         #endregion
 
@@ -496,7 +1557,6 @@ namespace VPKSoft.MessageBoxExtended
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
@@ -508,11 +1568,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
         /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             if (LocalizeOnCreate)
             {
@@ -522,34 +1584,12 @@ namespace VPKSoft.MessageBoxExtended
             // non-primitive type was requested..
             if (!IsGenericList(valuesList)) 
             {
-                throw new ArgumentException("The type to be queried must be a generic List{T}.");
+                throw new ArgumentException("The type to be queried must be a generic List{TList}.");
             }
 
-            using (var messageBoxQuery = new MessageBoxQueryPrimitiveValue())
+            using (var messageBoxQuery = new MessageBoxQueryPrimitiveValue<T>(text, caption, buttons, icon,
+                useMnemonic, displayMember, dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)) 
             {
-                messageBoxQuery.InstancePrimitiveType = typeof(T);
-                messageBoxQuery.SetEditorByType(valuesList.GetType(), 0);
-
-
-                messageBoxQuery.SetButtons(messageBoxQuery.CreateButtons(), useMnemonic);
-
-                messageBoxQuery.lbText.Text = text;
-                messageBoxQuery.Text = caption;
-                messageBoxQuery.pbMessageBoxIcon.Image = icon;
-
-                messageBoxQuery.cmbDropDownValue.Visible = true;
-                messageBoxQuery.FocusControl = messageBoxQuery.cmbDropDownValue;
-
-                foreach (var listValue in (IList) valuesList)
-                {
-                    messageBoxQuery.cmbDropDownValue.Items.Add(listValue);
-                }
-
-                messageBoxQuery.cmbDropDownValue.DropDownStyle = dropDownStyle;
-                messageBoxQuery.cmbDropDownValue.SelectedItem = value;
-
-                messageBoxQuery.SuspendValidation = false;
-
                 if (owner == null)
                 {
                     messageBoxQuery.ShowDialog();
@@ -568,7 +1608,6 @@ namespace VPKSoft.MessageBoxExtended
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
@@ -582,18 +1621,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
@@ -606,18 +1644,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
@@ -629,18 +1666,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(owner, text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
@@ -653,18 +1689,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(owner, text, caption, buttons, icon, true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
@@ -676,18 +1711,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(IWin32Window owner, string text, string caption,
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(owner, text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
@@ -700,18 +1734,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
@@ -724,18 +1757,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(null, text, caption, buttons, icon, useMnemonic, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
@@ -747,18 +1779,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
@@ -769,18 +1800,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(null, text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
@@ -792,18 +1822,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(null, text, caption, buttons, icon, true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
-        /// <typeparam name="T">Type type of <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/></typeparam>
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
@@ -814,12 +1843,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
-        public static DialogResultExtended Show<T>(string text, string caption,
+        public static DialogResultExtended Show(string text, string caption,
             Image icon, string displayMember,
             ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
         {
             return Show(null, text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
-                dropDownStyle, autoCompleteMode, valuesList, ref value);
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
         #endregion
 
@@ -827,9 +1856,8 @@ namespace VPKSoft.MessageBoxExtended
         /// <summary>
         /// Sets the value of a value editor control.
         /// </summary>
-        /// <typeparam name="T">The type of the value.</typeparam>
         /// <param name="value">The value to set to the editor control.</param>
-        private void SetValue<T>(T value)
+        private void SetValue(T value)
         {
             if (typeof(T) == typeof(string))
             {
@@ -881,9 +1909,8 @@ namespace VPKSoft.MessageBoxExtended
         /// <summary>
         /// Gets the value of an editor control.
         /// </summary>
-        /// <typeparam name="T">The type of the value.</typeparam>
         /// <returns>A value of type of T of an editor control.</returns>
-        private T GetValue<T>()
+        private T GetValue()
         {
             try
             {
@@ -1049,20 +2076,20 @@ namespace VPKSoft.MessageBoxExtended
 
         #region Miscallenous
         /// <summary>
-        /// A work-around to call the <see cref="GetValue{T}"/> method with a type.
+        /// A work-around to call the <see cref="GetValue"/> method with a type.
         /// </summary>
-        /// <returns>System.Object representing the value returned by the <see cref="GetValue{T}"/> method call.</returns>
+        /// <returns>System.Object representing the value returned by the <see cref="GetValue"/> method call.</returns>
         private object GetValueTypeParam()
         {
             return GetType().GetMethod("GetValue", BindingFlags.Instance | BindingFlags.NonPublic)
-                ?.MakeGenericMethod(InstancePrimitiveType).Invoke(this, new object[0]);
+                ?.Invoke(this, new object[0]);
         }
 
         /// <summary>
         /// Creates the buttons for the dialog box with the given <see cref="MessageBoxBase"/> enumeration value.
         /// </summary>
         /// <returns>A List&lt;Button&gt;. <see cref="Button"/> class instances based on th given parameters.</returns>
-        protected override List<Button> CreateButtons()
+        protected sealed override List<Button> CreateButtons()
         {
             AcceptButton = ButtonOk;
             CancelButton = ButtonCancel;

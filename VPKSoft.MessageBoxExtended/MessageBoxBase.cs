@@ -40,13 +40,23 @@ namespace VPKSoft.MessageBoxExtended
     /// <seealso cref="System.Windows.Forms.Form" />
     public partial class MessageBoxBase : Form
     {
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageBoxBase"/> class.
         /// </summary>
         public MessageBoxBase()
         {
             InitializeComponent();
+            Disposed += messageBoxBase_Disposed;
+            MessageBoxInstances.Add(this);
         }
+
+        private void messageBoxBase_Disposed(object sender, EventArgs e)
+        {
+            Disposed -= messageBoxBase_Disposed;
+            MessageBoxInstances.Remove(this);
+        }
+        #endregion
 
         #region Localize
         /// <summary>
@@ -167,13 +177,7 @@ namespace VPKSoft.MessageBoxExtended
         public static string PreviousPasswordInvalid { get; set; } = "The given password was incorrect. Please try again.";
         #endregion
 
-        /// <summary>
-        /// The <see cref="DialogResultExtended"/> returned by a call to the the Show() method.
-        /// </summary>
-        protected DialogResultExtended Result = DialogResultExtended.None;
-
         #region Buttons
-
         private Button buttonOk;
         private Button buttonAbort;
         private Button buttonRetry;
@@ -196,6 +200,7 @@ namespace VPKSoft.MessageBoxExtended
                     buttonOk.Click += delegate
                     {
                         Result = DialogResultExtended.OK;
+                        DialogResultAction?.Invoke(Result, false, ActionData);
                         Close();
                     };
                 }
@@ -218,6 +223,7 @@ namespace VPKSoft.MessageBoxExtended
                     buttonAbort.Click += delegate
                     {
                         Result = DialogResultExtended.Abort;
+                        DialogResultAction?.Invoke(Result, false, ActionData);
                         Close();
                     };
                 }
@@ -240,6 +246,7 @@ namespace VPKSoft.MessageBoxExtended
                     buttonRetry.Click += delegate
                     {
                         Result = DialogResultExtended.Retry;
+                        DialogResultAction?.Invoke(Result, false, ActionData);
                         Close();
                     };
                 }
@@ -261,7 +268,8 @@ namespace VPKSoft.MessageBoxExtended
                     buttonIgnore = new Button {Text = TextIgnore};
                     buttonIgnore.Click += delegate
                     {
-                        Result = DialogResultExtended.Retry;
+                        Result = DialogResultExtended.Ignore;
+                        DialogResultAction?.Invoke(Result, false, ActionData);
                         Close();
                     };
                 }
@@ -284,6 +292,7 @@ namespace VPKSoft.MessageBoxExtended
                     buttonCancel.Click += delegate
                     {
                         Result = DialogResultExtended.Cancel;
+                        DialogResultAction?.Invoke(Result, false, ActionData);
                         Close();
                     };
                 }
@@ -306,6 +315,7 @@ namespace VPKSoft.MessageBoxExtended
                     buttonYes.Click += delegate
                     {
                         Result = DialogResultExtended.Yes;
+                        DialogResultAction?.Invoke(Result, false, ActionData);
                         Close();
                     };
                 }
@@ -328,6 +338,7 @@ namespace VPKSoft.MessageBoxExtended
                     buttonNo.Click += delegate
                     {
                         Result = DialogResultExtended.No;
+                        DialogResultAction?.Invoke(Result, false, ActionData);
                         Close();
                     };
                 }
@@ -337,11 +348,13 @@ namespace VPKSoft.MessageBoxExtended
         }
         #endregion
 
+        #region ProtectedMethods
         /// <summary>
         /// Creates the buttons for the dialog box with the given <see cref="MessageBoxBase"/> enumeration value.
         /// </summary>
         /// <param name="buttons">The buttons.</param>
         /// <returns>A List&lt;Button&gt;. <see cref="Button"/> class instances based on th given parameters.</returns>
+        // ReSharper disable once UnusedMemberInSuper.Global
         protected virtual List<Button> CreateButtons(MessageBoxButtonsExtended buttons)
         {
             List<Button> uiButtons = new List<Button>();
@@ -352,6 +365,7 @@ namespace VPKSoft.MessageBoxExtended
         /// Creates the buttons for the dialog box with the given <see cref="MessageBoxBase"/> enumeration value.
         /// </summary>
         /// <returns>A List&lt;Button&gt;. <see cref="Button"/> class instances based on th given parameters.</returns>
+        // ReSharper disable once UnusedMemberInSuper.Global
         protected virtual List<Button> CreateButtons()
         {
             List<Button> uiButtons = new List<Button>();
@@ -371,69 +385,15 @@ namespace VPKSoft.MessageBoxExtended
                 button.UseMnemonic = useMnemonic; // set the (stupid) mnemonic value..
             }
         }
+        #endregion
 
+        #region ProtectedProperties
         /// <summary>
-        /// Gets the top base size for the dialog size calculation.
+        /// Gets or sets the dialog result <see cref="Action{DialogResultExtended, Boolean}"/> action which is called when a button is pressed in the dialog.
+        /// The boolean value is a value whether the user answer should be remembered.
         /// </summary>
-        protected Size BaseSizeTop
-        {
-            get
-            {
-                var coordinateX = 16;
-                var coordinateY = 16;
-                pbMessageBoxIcon.Location = new Point(coordinateX, coordinateY);
-
-                lbText.Left = pbMessageBoxIcon.Right + 20;
-                lbText.Top = coordinateY;
-                lbText.Width = ClientSize.Width - 20 - lbText.Left;
-
-                lbText.Height = LabelHeight;
-
-                coordinateY += Math.Max(lbText.Height, pbMessageBoxIcon.Height);
-
-                return new Size(ClientSize.Width, coordinateY);
-            }
-        }
-
-        /// <summary>
-        /// Gets the bottom base size for the dialog size calculation.
-        /// </summary>
-        protected Size BaseSizeBottom => new Size(ClientSize.Width, flpButtons.Controls[0].Height + 25);
-
-        /// <summary>
-        /// Gets the total base size for the dialog without any additional controls.
-        /// </summary>
-        protected Size BaseSizeTotal
-        {
-            get
-            {
-                var sizeTop = BaseSizeTop;
-                var sizeBottom = BaseSizeBottom;
-                return new Size(ClientSize.Width, sizeTop.Height + sizeBottom.Height);
-            }
-        }
-
-        /// <summary>
-        /// Gets the message box icon based on the given <see cref="MessageBoxIcon"/> enumeration value.
-        /// </summary>
-        /// <param name="icon">The icon enumeration value.</param>
-        /// <returns>An <see cref="Image"/> instance representing the icon or an empty image if the icon wasn't found.</returns>
-        // ReSharper disable once UnusedMember.Global
-        public static Image GetMessageBoxIcon(MessageBoxIcon icon)
-        {
-            // store the size to take higher system DPI setting into account,
-            // don't know if size changes though..
-            var size = SystemIcons.Asterisk.Size;
-            switch (icon)
-            {
-                case MessageBoxIcon.Asterisk: return SystemIcons.Asterisk.ToBitmap();
-                case MessageBoxIcon.Exclamation: return SystemIcons.Exclamation.ToBitmap();
-                case MessageBoxIcon.Hand: return SystemIcons.Hand.ToBitmap();
-                case MessageBoxIcon.None: return new Bitmap(size.Width, size.Height);
-                case MessageBoxIcon.Question: return SystemIcons.Question.ToBitmap();
-            }
-            return new Bitmap(size.Width, size.Height);
-        }
+        /// <value>The action which is called when a button is pressed in the dialog.</value>
+        protected Action<DialogResultExtended, bool, object> DialogResultAction { get; set; } 
 
         /// <summary>
         /// Gets the height of the label with the dialog text.
@@ -468,5 +428,90 @@ namespace VPKSoft.MessageBoxExtended
                 }
             }
         }
+
+        /// <summary>
+        /// The <see cref="DialogResultExtended"/> returned by a call to the the Show() method.
+        /// </summary>
+        protected DialogResultExtended Result { get; set; } = DialogResultExtended.None;
+
+        /// <summary>
+        /// Gets the top base size for the dialog size calculation.
+        /// </summary>
+        protected Size BaseSizeTop
+        {
+            get
+            {
+                var coordinateX = 16;
+                var coordinateY = 16;
+                pbMessageBoxIcon.Location = new Point(coordinateX, coordinateY);
+
+                lbText.Left = pbMessageBoxIcon.Right + 20;
+                lbText.Top = coordinateY;
+                lbText.Width = ClientSize.Width - 20 - lbText.Left;
+
+                lbText.Height = LabelHeight;
+
+                coordinateY += Math.Max(lbText.Height, pbMessageBoxIcon.Height);
+
+                return new Size(ClientSize.Width, coordinateY);
+            }
+        }
+
+        /// <summary>
+        /// Gets the bottom base size for the dialog size calculation.
+        /// </summary>
+        protected Size BaseSizeBottom => new Size(ClientSize.Width, (flpButtons.Controls.Count > 0 ? flpButtons.Controls[0].Height : 0) + 25);
+
+        /// <summary>
+        /// Gets the total base size for the dialog without any additional controls.
+        /// </summary>
+        protected Size BaseSizeTotal
+        {
+            get
+            {
+                var sizeTop = BaseSizeTop;
+                var sizeBottom = BaseSizeBottom;
+                return new Size(ClientSize.Width, sizeTop.Height + sizeBottom.Height);
+            }
+        }
+        #endregion
+
+        #region PublicProperties        
+        /// <summary>
+        /// Gets the currently existing <see cref="MessageBoxBase"/> instances.
+        /// </summary>
+        /// <value>The currently existing <see cref="MessageBoxBase"/> instances.</value>
+        public List<MessageBoxBase> MessageBoxInstances { get; } = new List<MessageBoxBase>();
+
+        /// <summary>
+        /// Gets or sets the additional data to be passed to the <see cref="DialogResultAction"/> action.
+        /// </summary>
+        /// <value>The the additional data to be passed to the <see cref="DialogResultAction"/> action.</value>
+        public object ActionData { get; set; }
+        #endregion
+
+        #region PublicStaticMethods
+        /// <summary>
+        /// Gets the message box icon based on the given <see cref="MessageBoxIcon"/> enumeration value.
+        /// </summary>
+        /// <param name="icon">The icon enumeration value.</param>
+        /// <returns>An <see cref="Image"/> instance representing the icon or an empty image if the icon wasn't found.</returns>
+        // ReSharper disable once UnusedMember.Global
+        public static Image GetMessageBoxIcon(MessageBoxIcon icon)
+        {
+            // store the size to take higher system DPI setting into account,
+            // don't know if size changes though..
+            var size = SystemIcons.Asterisk.Size;
+            switch (icon)
+            {
+                case MessageBoxIcon.Asterisk: return SystemIcons.Asterisk.ToBitmap();
+                case MessageBoxIcon.Exclamation: return SystemIcons.Exclamation.ToBitmap();
+                case MessageBoxIcon.Hand: return SystemIcons.Hand.ToBitmap();
+                case MessageBoxIcon.None: return new Bitmap(size.Width, size.Height);
+                case MessageBoxIcon.Question: return SystemIcons.Question.ToBitmap();
+            }
+            return new Bitmap(size.Width, size.Height);
+        }
+        #endregion
     }
 }

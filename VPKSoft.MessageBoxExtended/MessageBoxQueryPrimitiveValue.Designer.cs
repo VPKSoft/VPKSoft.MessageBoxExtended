@@ -1,6 +1,6 @@
 ﻿namespace VPKSoft.MessageBoxExtended
 {
-    partial class MessageBoxQueryPrimitiveValue
+    partial class MessageBoxQueryPrimitiveValue<T>
     {
         /// <summary>
         /// Required designer variable.

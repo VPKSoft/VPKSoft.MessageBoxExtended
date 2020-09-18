@@ -36,7 +36,7 @@ namespace TestApp
         public FormMain()
         {
             InitializeComponent();
-            MessageBoxQueryPrimitiveValue.ValidateTypeValue += MessageBoxQueryPrimitiveValue_ValidateTypeValue;
+            MessageBoxQueryPrimitiveValue<string>.ValidateTypeValue += MessageBoxQueryPrimitiveValue_ValidateTypeValue;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -62,7 +62,7 @@ namespace TestApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBoxQueryPrimitiveValue.Show(this, "Please give your first and last name", "First and last name",
+            MessageBoxQueryPrimitiveValue<string>.Show(this, "Please give your first and last name", "First and last name",
                 MessageBoxIcon.Question, ref name);
         }
 

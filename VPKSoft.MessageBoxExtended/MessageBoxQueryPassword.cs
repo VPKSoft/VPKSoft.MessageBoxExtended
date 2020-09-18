@@ -41,6 +41,7 @@ namespace VPKSoft.MessageBoxExtended
     /// <seealso cref="VPKSoft.MessageBoxExtended.MessageBoxBase" />
     public partial class MessageBoxQueryPassword : MessageBoxBase
     {
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="MessageBoxQueryPassword"/> class.
         /// </summary>
@@ -49,6 +50,217 @@ namespace VPKSoft.MessageBoxExtended
             InitializeComponent();
         }
 
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <param name="password">A password to set to the contents of the password </param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            InitializeComponent();
+
+            if (LocalizeOnCreate)
+            {
+                Localize();
+            }
+
+            SetButtons(CreateButtons(), useMnemonic);
+
+            DialogResultAction = dialogResultAction;
+
+            lbText.Text = text;
+            base.Text = caption;
+            if (icon != null)
+            {
+                pbMessageBoxIcon.Image = icon;
+            }
+
+            CancelButton = ButtonCancel;
+            AcceptButton = ButtonOk;
+            ShowPasswordStrength = showPasswordStrength;
+
+            ComplainInvalidPassword = givenPasswordInvalid;
+
+            lbInvalidPasswordComplaint.Text = PreviousPasswordInvalid;
+            tbPassword.Text = password;
+
+            pbColorSlide.Image = PasswordStrengthSliderImage;
+            pbMessageBoxIcon.Image = PasswordIconImage;
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <param name="password">A password to set to the contents of the password </param>
+        public MessageBoxQueryPassword(string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password) : this(
+            text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, password, null)
+        {
+
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, icon,
+            useMnemonic, givenPasswordInvalid, false, null, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid) : this(text, caption, icon,
+            useMnemonic, givenPasswordInvalid, false, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, icon, useMnemonic,
+            givenPasswordInvalid, showPasswordStrength, null, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength) : this(text, caption, icon, useMnemonic,
+            givenPasswordInvalid, showPasswordStrength, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            bool useMnemonic, bool givenPasswordInvalid, Action<DialogResultExtended, bool, object> dialogResultAction)
+            : this(text, caption, null, useMnemonic, givenPasswordInvalid, false, null, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            bool useMnemonic, bool givenPasswordInvalid)
+            : this(text, caption, null, useMnemonic, givenPasswordInvalid, false, null, null)
+        {
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, and caption.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public MessageBoxQueryPassword(string text, string caption,
+            bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, null, useMnemonic,
+            givenPasswordInvalid, showPasswordStrength, null, dialogResultAction)
+        {
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, and caption.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public MessageBoxQueryPassword(string text, string caption,
+            bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength) : this(text, caption, null,
+            useMnemonic,
+            givenPasswordInvalid, showPasswordStrength, null, null)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        public MessageBoxQueryPassword(string text, string caption,
+            Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, null, true, false,
+            false, null, dialogResultAction)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new password query message box with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        public MessageBoxQueryPassword(string text, string caption) : this(text, caption, null, true, false,
+            false, null, null)
+        {
+        }
+        #endregion
+
+        #region ShowMethods
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
@@ -61,38 +273,20 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
         /// <param name="password">A password to set to the contents of the password </param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
         public static string Show(IWin32Window owner, string text, string caption,
-            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password)
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             if (LocalizeOnCreate)
             {
                 Localize();
             }
 
-            using (var messageBoxExtended = new MessageBoxQueryPassword())
+            using (var messageBoxExtended = new MessageBoxQueryPassword(text, caption, icon, useMnemonic,
+                givenPasswordInvalid, showPasswordStrength, password, dialogResultAction)) 
             {
-                messageBoxExtended.SetButtons(messageBoxExtended.CreateButtons(), useMnemonic);
-
-                messageBoxExtended.lbText.Text = text;
-                messageBoxExtended.Text = caption;
-                if (icon != null)
-                {
-                    messageBoxExtended.pbMessageBoxIcon.Image = icon;
-                }
-
-                messageBoxExtended.CancelButton = messageBoxExtended.ButtonCancel;
-                messageBoxExtended.AcceptButton = messageBoxExtended.ButtonOk;
-                messageBoxExtended.ShowPasswordStrength = showPasswordStrength;
-
-                messageBoxExtended.ComplainInvalidPassword = givenPasswordInvalid;
-
-                messageBoxExtended.lbInvalidPasswordComplaint.Text = PreviousPasswordInvalid;
-                messageBoxExtended.tbPassword.Text = password;
-
-                messageBoxExtended.pbColorSlide.Image = PasswordStrengthSliderImage;
-                messageBoxExtended.pbMessageBoxIcon.Image = PasswordIconImage;
-
                 if (owner == null)
                 {
                     messageBoxExtended.ShowDialog();
@@ -116,11 +310,49 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <param name="password">A password to set to the contents of the password </param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password)
+        {
+            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, password,
+                null);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid)
         {
-            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, false, null);
+            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, false, null, null);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, false, null, dialogResultAction);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -138,9 +370,28 @@ namespace VPKSoft.MessageBoxExtended
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength)
         {
-            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, null);
+            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, null);
         }
 
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, dialogResultAction);
+        }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
         /// <summary>
@@ -155,7 +406,24 @@ namespace VPKSoft.MessageBoxExtended
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, bool givenPasswordInvalid)
         {
-            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, false, null);
+            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, false, null, null);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, and caption.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            bool useMnemonic, bool givenPasswordInvalid, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, false, null, dialogResultAction);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -172,7 +440,25 @@ namespace VPKSoft.MessageBoxExtended
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength)
         {
-            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, showPasswordStrength, null);
+            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, null);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, and caption.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
+        /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, dialogResultAction);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -187,7 +473,23 @@ namespace VPKSoft.MessageBoxExtended
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic)
         {
-            return Show(owner, text, caption, null, useMnemonic, false, false, null);
+            return Show(owner, text, caption, null, useMnemonic, false, false, null, null);
+        }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, and caption.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption,
+            bool useMnemonic, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, null, useMnemonic, false, false, null, dialogResultAction);
         }
 
         // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
@@ -200,8 +502,24 @@ namespace VPKSoft.MessageBoxExtended
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
         public static string Show(IWin32Window owner, string text, string caption)
         {
-            return Show(owner, text, caption, null, true, false, false, null);
+            return Show(owner, text, caption, null, true, false, false, null, null);
         }
+
+        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        /// <summary>
+        /// Displays an password query message box in front of the specified object and with the specified text, and caption.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        public static string Show(IWin32Window owner, string text, string caption, Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, null, true, false, false, null, dialogResultAction);
+        }
+        #endregion
+
 
         private bool ComplainInvalidPassword { get; set; }
 
@@ -211,7 +529,7 @@ namespace VPKSoft.MessageBoxExtended
         /// Creates the buttons for the dialog box with the given <see cref="MessageBoxBase"/> enumeration value.
         /// </summary>
         /// <returns>A List&lt;Button&gt;. <see cref="Button"/> class instances based on th given parameters.</returns>
-        protected override List<Button> CreateButtons()
+        protected sealed override List<Button> CreateButtons()
         {
             return new List<Button> {ButtonOk, ButtonCancel};
         }
