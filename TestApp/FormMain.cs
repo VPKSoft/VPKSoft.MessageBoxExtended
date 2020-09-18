@@ -70,9 +70,17 @@ namespace TestApp
         {
             if (e.TypeValue.ToString() != name)
             {
-                e.IsValid = false;
+                e.IsValid = true;
                 e.ValidationErrorMessage = "Please type YOUR name!";
             }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string dropDownValue = "Linux";
+            MessageBoxQueryPrimitiveValue<string>.Show(this, "Select your operating system", "Operation system selection",
+                MessageBoxButtonsExtended.YesNo, MessageBoxIcon.Information, false, null, ComboBoxStyle.DropDown,
+                AutoCompleteMode.Suggest, new List<string>(new[] {"Windows", "OS X", "Linux", "Unix", "iOS", "BSD*"}), ref dropDownValue);
         }
     }
 }

@@ -202,7 +202,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -220,7 +220,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -261,7 +261,7 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region ShowMethods
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
         /// </summary>
@@ -275,6 +275,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="password">A password to set to the contents of the password </param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password,
             Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -300,7 +301,7 @@ namespace VPKSoft.MessageBoxExtended
             }
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
         /// </summary>
@@ -313,6 +314,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
         /// <param name="password">A password to set to the contents of the password </param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, string password)
         {
@@ -320,7 +322,7 @@ namespace VPKSoft.MessageBoxExtended
                 null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
         /// </summary>
@@ -331,13 +333,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid)
         {
             return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, false, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
         /// </summary>
@@ -349,13 +352,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, false, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
         /// </summary>
@@ -367,13 +371,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength)
         {
             return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, caption, and icon.
         /// </summary>
@@ -386,6 +391,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength,
             Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -393,7 +399,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(owner, text, caption, icon, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -403,13 +409,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, bool givenPasswordInvalid)
         {
             return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, false, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -420,13 +427,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, bool givenPasswordInvalid, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, false, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -437,13 +445,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="givenPasswordInvalid">A value indicating whether the previously given password was invalid and this should be indicated to the user by additional label.</param>
         /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength)
         {
             return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -455,13 +464,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="showPasswordStrength">A value indicating whether to display password strength indicated by a progress bar.</param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, bool givenPasswordInvalid, bool showPasswordStrength, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             return Show(owner, text, caption, null, useMnemonic, givenPasswordInvalid, showPasswordStrength, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -470,13 +480,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic)
         {
             return Show(owner, text, caption, null, useMnemonic, false, false, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -486,13 +497,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption,
             bool useMnemonic, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             return Show(owner, text, caption, null, useMnemonic, false, false, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -500,12 +512,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="text">The text to display in the message box.</param>
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption)
         {
             return Show(owner, text, caption, null, true, false, false, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an password query message box in front of the specified object and with the specified text, and caption.
         /// </summary>
@@ -514,16 +527,25 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="caption">The text to display in the title bar of the message box.</param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>A string containing the user given password or null in case the user selected to cancel the dialog.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static string Show(IWin32Window owner, string text, string caption, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             return Show(owner, text, caption, null, true, false, false, null, dialogResultAction);
         }
         #endregion
 
+        /// <summary>
+        /// Gets a value indicating whether to display a label indicating that the given password is invalid.
+        /// </summary>
+        /// <value><c>true</c> if a label indicating that the given password is invalid should be displayed; otherwise, <c>false</c>.</value>
+        /// <remarks>Do note that as enabled this option is a severe security risk in case the password is being validated is known and is required to access any resource.</remarks>
+        private bool ComplainInvalidPassword { get; }
 
-        private bool ComplainInvalidPassword { get; set; }
-
-        private bool ShowPasswordStrength { get; set; }
+        /// <summary>
+        /// Gets a value indicating whether to display a password strength indicator.
+        /// </summary>
+        /// <value><c>true</c> if to display a password strength indicator; otherwise, <c>false</c>.</value>
+        private bool ShowPasswordStrength { get; }
 
         /// <summary>
         /// Creates the buttons for the dialog box with the given <see cref="MessageBoxBase"/> enumeration value.

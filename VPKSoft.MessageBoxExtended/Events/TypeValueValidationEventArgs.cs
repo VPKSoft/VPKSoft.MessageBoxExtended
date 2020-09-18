@@ -21,6 +21,11 @@ namespace VPKSoft.MessageBoxExtended.Events
         public bool IsValid { get; set; }
 
         /// <summary>
+        /// Gets or sets the type of the <see cref="TypeValue"/> object.
+        /// </summary>
+        public Type Type { get; set; }
+
+        /// <summary>
         /// Gets or sets the validation error message.
         /// </summary>
         public string ValidationErrorMessage { get; set; }

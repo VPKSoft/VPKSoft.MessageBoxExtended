@@ -27,6 +27,7 @@ namespace VPKSoft.MessageBoxExtended
             lbInvalidValidationText.Text = string.Empty;
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -91,6 +92,7 @@ namespace VPKSoft.MessageBoxExtended
             value = GetValue();
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -114,6 +116,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -137,6 +140,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -161,6 +165,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -177,6 +182,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -196,6 +202,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -209,6 +216,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -224,6 +232,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -242,6 +251,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -262,6 +272,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -279,6 +290,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -299,6 +311,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -315,6 +328,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -333,6 +347,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -346,6 +361,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -361,6 +377,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -378,6 +395,7 @@ namespace VPKSoft.MessageBoxExtended
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, input control, text, caption, and icon.
         /// </summary>
@@ -399,6 +417,7 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region ConstructorsPrimitiveList
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -416,7 +435,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, IList valuesList, ref object value,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
             Action<DialogResultExtended, bool, object> dialogResultAction) : this()
         {
             if (LocalizeOnCreate)
@@ -444,7 +463,7 @@ namespace VPKSoft.MessageBoxExtended
             cmbDropDownValue.Visible = true;
             FocusControl = cmbDropDownValue;
 
-            foreach (var listValue in (IList) valuesList)
+            foreach (var listValue in valuesList)
             {
                 cmbDropDownValue.Items.Add(listValue);
             }
@@ -460,6 +479,7 @@ namespace VPKSoft.MessageBoxExtended
             SuspendValidation = false;
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -476,12 +496,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value) :
             this(text, caption, buttons, icon, useMnemonic, displayMember, dropDownStyle, autoCompleteMode, valuesList,
                 ref value, null)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -498,12 +519,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value) :
             this(text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -521,13 +543,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
             GetMessageBoxIcon(icon), useMnemonic, displayMember,
             dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -543,12 +566,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(
             string text, string caption, MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value) :
             this(text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember, dropDownStyle, autoCompleteMode,
                 valuesList, ref value)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -566,13 +590,14 @@ namespace VPKSoft.MessageBoxExtended
         public MessageBoxQueryPrimitiveValue(
             string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
             GetMessageBoxIcon(icon), true, displayMember,
             dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -587,12 +612,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             Image icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value) :
             this(text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -608,14 +634,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             Image icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
             Action<DialogResultExtended, bool, object> dialogResultAction) :
             this(text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
         {
         }
 
-
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -631,11 +657,12 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption, MessageBoxButtonsExtended buttons, Image icon,
             string displayMember, ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList,
-            ref object value) : this(text, caption, buttons, icon, true, displayMember, dropDownStyle, autoCompleteMode,
+            ref T value) : this(text, caption, buttons, icon, true, displayMember, dropDownStyle, autoCompleteMode,
             valuesList, ref value, null)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -652,13 +679,14 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons, icon, true,
             displayMember,
             dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
         {
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -672,13 +700,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption, MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value) :
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value) :
             this(text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value)
         {
         }
 
-
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Initializes a generic message box message box with the specified type, items to select <see cref="ComboBox"/>, text, caption, and icon.
         /// </summary>
@@ -694,7 +722,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public MessageBoxQueryPrimitiveValue(string text, string caption,
             MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
             Action<DialogResultExtended, bool, object> dialogResultAction) :
             this(text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, dialogResultAction)
@@ -703,7 +731,7 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region ShowMethodsPrimitive
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -759,7 +787,7 @@ namespace VPKSoft.MessageBoxExtended
             }
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -776,6 +804,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
@@ -786,7 +815,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -799,6 +828,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -807,7 +837,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -819,6 +849,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -827,7 +858,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -837,6 +868,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, ref T value)
         {
@@ -844,7 +876,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -857,6 +889,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
@@ -865,7 +898,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -878,6 +911,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -886,7 +920,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -898,6 +932,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -906,7 +941,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -916,6 +951,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, ref T value)
         {
@@ -923,7 +959,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -936,6 +972,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
@@ -944,7 +981,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -960,6 +997,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
@@ -970,7 +1008,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -986,6 +1024,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
@@ -996,7 +1035,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1008,6 +1047,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -1016,7 +1056,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1027,6 +1067,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -1035,7 +1076,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1044,6 +1085,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, ref T value)
         {
@@ -1051,7 +1093,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1063,6 +1105,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
@@ -1071,7 +1114,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1083,6 +1126,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -1091,7 +1135,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1102,6 +1146,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="dateTimeFormat">A <see cref="DateTimePickerFormat"/> enumeration value in case a date and/or time is queried.</param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value)
@@ -1110,7 +1155,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1119,6 +1164,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, ref T value)
         {
@@ -1126,7 +1172,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1138,6 +1184,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMin">The minimum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax)
@@ -1146,7 +1193,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, null);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1164,6 +1211,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
@@ -1174,7 +1222,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1188,6 +1236,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1196,7 +1245,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1209,6 +1258,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1217,7 +1267,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1228,6 +1278,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
@@ -1235,7 +1286,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1249,6 +1300,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1257,7 +1309,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1271,6 +1323,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1279,7 +1332,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1292,6 +1345,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1300,7 +1354,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1311,6 +1365,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
@@ -1318,7 +1373,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1332,6 +1387,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1340,7 +1396,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1357,6 +1413,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
@@ -1367,7 +1424,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1384,6 +1441,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="checkBoxText">An optional text for a <see cref="CheckBox"/> in case of a boolean type.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             int floatDecimals, DateTimePickerFormat dateTimeFormat, ref T value, decimal upDownMin,
@@ -1394,7 +1452,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, dateTimeFormat, ref value, upDownMin, upDownMax, checkBoxText, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1407,6 +1465,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1415,7 +1474,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1427,6 +1486,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1435,7 +1495,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1445,6 +1505,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
@@ -1452,7 +1513,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1465,6 +1526,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1473,7 +1535,7 @@ namespace VPKSoft.MessageBoxExtended
                 floatDecimals, DateTimePickerFormat.Long, ref value, upDownMin, upDownMax, null, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1486,6 +1548,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, bool useMnemonic, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1494,7 +1557,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1506,6 +1569,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, string dateTimeFormatting,
             DateTimePickerFormat dateTimeFormat, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1514,7 +1578,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, dateTimeFormat, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1524,6 +1588,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">A value of type of T the user entered if the dialog was accepted.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, ref T value, Action<DialogResultExtended, bool, object> dialogResultAction)
         {
@@ -1531,7 +1596,7 @@ namespace VPKSoft.MessageBoxExtended
                 0, DateTimePickerFormat.Long, ref value, 0M, 100M, "", dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -1544,6 +1609,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="upDownMax">The maximum value of a see <see cref="NumericUpDown"/> control in case of a numeric type.</param>
         /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, int floatDecimals, ref T value, decimal upDownMin,
             decimal upDownMax, Action<DialogResultExtended, bool, object> dialogResultAction)
@@ -1554,6 +1620,7 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region ShowMethodsGenericList
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1573,7 +1640,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
             Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             if (LocalizeOnCreate)
@@ -1584,7 +1651,7 @@ namespace VPKSoft.MessageBoxExtended
             // non-primitive type was requested..
             if (!IsGenericList(valuesList)) 
             {
-                throw new ArgumentException("The type to be queried must be a generic List{TList}.");
+                throw new ArgumentException("The type to be queried must be a generic List{T}.");
             }
 
             using (var messageBoxQuery = new MessageBoxQueryPrimitiveValue<T>(text, caption, buttons, icon,
@@ -1599,12 +1666,13 @@ namespace VPKSoft.MessageBoxExtended
                     messageBoxQuery.ShowDialog(owner);
                 }
 
-                value = messageBoxQuery.cmbDropDownValue.SelectedItem;
+                value = (T)messageBoxQuery.cmbDropDownValue.SelectedItem;
 
                 return messageBoxQuery.Result;
             }
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1623,12 +1691,13 @@ namespace VPKSoft.MessageBoxExtended
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1644,14 +1713,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1666,14 +1737,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(owner, text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1689,14 +1762,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(owner, text, caption, buttons, icon, true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1711,14 +1786,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             Image icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(owner, text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1734,14 +1811,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1757,14 +1836,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(null, text, caption, buttons, icon, useMnemonic, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1779,14 +1860,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1800,14 +1883,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxIcon icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(null, text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1822,14 +1907,16 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
         {
             return Show(null, text, caption, buttons, icon, true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
         }
 
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
         /// </summary>
@@ -1843,9 +1930,300 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
         public static DialogResultExtended Show(string text, string caption,
             Image icon, string displayMember,
-            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref object value)
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value)
+        {
+            return Show(null, text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, buttons, icon, true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box in front of the specified object and with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            Image icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(owner, text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, buttons, icon, useMnemonic, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxIcon icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, MessageBoxButtonsExtended.OKCancel, GetMessageBoxIcon(icon), true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
+        {
+            return Show(null, text, caption, buttons, icon, true, displayMember,
+                dropDownStyle, autoCompleteMode, valuesList, ref value, null);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays a generic message box with the specified text, caption, items to select <see cref="ComboBox"/>, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="displayMember">The property to display in the <see cref="ComboBox"/> querying an item selection from the user in the dialog.</param>
+        /// <param name="dropDownStyle">A value specifying the style of the combo box querying an item selection from the user.</param>
+        /// <param name="autoCompleteMode">The option that controls how automatic completion works for the <see cref="ComboBox"/> in the dialog querying an item selection from the user in the dialog.</param>
+        /// <param name="valuesList">A <see cref="List{T}"/> containing the values to display in the <see cref="ComboBox"/> in the dialog.</param>
+        /// <param name="value">The value the user selected from the <see cref="ComboBox"/> by accepting the dialog.</param>
+        /// <param name="dialogResultAction">A <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        /// <exception cref="ArgumentException">The type to be queried must be a generic <see cref="List{T}"/>.</exception>
+        // ReSharper disable once UnusedMember.Global (this is a class library)..
+        public static DialogResultExtended Show(string text, string caption,
+            Image icon, string displayMember,
+            ComboBoxStyle dropDownStyle, AutoCompleteMode autoCompleteMode, List<T> valuesList, ref T value,
+            Action<DialogResultExtended, bool, object> dialogResultAction)
         {
             return Show(null, text, caption, MessageBoxButtonsExtended.OKCancel, icon, true, displayMember,
                 dropDownStyle, autoCompleteMode, valuesList, ref value, null);
@@ -1953,7 +2331,7 @@ namespace VPKSoft.MessageBoxExtended
                 if (SuspendInvalidCastException)
                 {
                     ValidateTypeValue?.Invoke(this,
-                        new TypeValueValidationEventArgs {Exception = ex, IsValid = false});
+                        new TypeValueValidationEventArgs {Exception = ex, IsValid = false, Type = typeof(T)});
                 }
                 else
                 {
@@ -2013,7 +2391,18 @@ namespace VPKSoft.MessageBoxExtended
         /// <summary>
         /// Gets or sets a value indicating whether suspend the <see cref="InvalidCastException"/> and report it via the <see cref="ValidateTypeValue"/> event.
         /// </summary>
+        // ReSharper disable once StaticMemberInGenericType (this class is only for the primitive types and primitive lists..)
         public static bool SuspendInvalidCastException { get; set; } = true;
+
+        /// <summary>
+        /// Gets or sets the type of the value being queried by this dialog.
+        /// </summary>
+        public Type InstancePrimitiveType { get; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether to suspend raising <see cref="ValidateTypeValue"/> events.
+        /// </summary>
+        public bool SuspendValidation { get; set; } = true;
         #endregion
 
         #region PrivateProperties
@@ -2021,16 +2410,6 @@ namespace VPKSoft.MessageBoxExtended
         /// Gets or sets the editor control to be focused when the dialog is shown.
         /// </summary>
         private Control FocusControl { get; set; }
-
-        /// <summary>
-        /// Gets or sets the type of the value being queried by this dialog.
-        /// </summary>
-        private Type InstancePrimitiveType { get; set; }
-
-        /// <summary>
-        /// Gets or sets a value indicating whether to suspend raising <see cref="ValidateTypeValue"/> events.
-        /// </summary>
-        private bool SuspendValidation { get; set; } = true;
         #endregion
 
         #region Events
@@ -2066,6 +2445,7 @@ namespace VPKSoft.MessageBoxExtended
             {
                 IsValid = true,
                 TypeValue = sender.Equals(cmbDropDownValue) ? cmbDropDownValue.SelectedItem : GetValueTypeParam(),
+                Type = typeof(T),
             };
 
             ValidateTypeValue?.Invoke(this, args);
@@ -2122,6 +2502,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <summary>
         /// A <see cref="Dictionary{TKey,TValue}"/> for possible <see cref="Type"/>-<see cref="TypeCode"/> pairs.
         /// </summary>
+        // ReSharper disable once StaticMemberInGenericType (this class is only for the primitive types and primitive lists..)
         private static readonly Dictionary<Type, TypeCode> TypeCodeDictionary =
             new Dictionary<Type, TypeCode>
             {

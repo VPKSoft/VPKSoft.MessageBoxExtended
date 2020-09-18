@@ -358,6 +358,40 @@ namespace VPKSoft.MessageBoxExtended
         protected virtual List<Button> CreateButtons(MessageBoxButtonsExtended buttons)
         {
             List<Button> uiButtons = new List<Button>();
+            switch (buttons)
+            {
+                case MessageBoxButtonsExtended.OK:
+                    uiButtons.Add(ButtonOk);
+                    break;
+
+                case MessageBoxButtonsExtended.AbortRetryIgnore:
+                    uiButtons.Add(ButtonAbort);
+                    uiButtons.Add(ButtonRetry);
+                    uiButtons.Add(ButtonIgnore);
+                    break;
+
+                case MessageBoxButtonsExtended.OKCancel:
+                    uiButtons.Add(ButtonOk);
+                    uiButtons.Add(ButtonCancel);
+                    break;
+
+                case MessageBoxButtonsExtended.RetryCancel:
+                    uiButtons.Add(ButtonRetry);
+                    uiButtons.Add(ButtonCancel);
+                    break;
+
+                case MessageBoxButtonsExtended.YesNo:
+                    uiButtons.Add(ButtonYes);
+                    uiButtons.Add(ButtonNo);
+                    break;
+
+                case MessageBoxButtonsExtended.YesNoCancel:
+                    uiButtons.Add(ButtonYes);
+                    uiButtons.Add(ButtonNo);
+                    uiButtons.Add(ButtonCancel);
+                    break;
+            }
+
             return uiButtons;
         }
 

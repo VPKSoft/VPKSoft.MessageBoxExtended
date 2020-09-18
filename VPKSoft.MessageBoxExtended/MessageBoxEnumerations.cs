@@ -28,7 +28,7 @@ using System.Runtime.InteropServices;
 
 namespace VPKSoft.MessageBoxExtended
 {
-    // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+    // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
     /// <summary>
     /// An enumeration for the Show(..) method return values.
     /// </summary>
@@ -97,7 +97,7 @@ namespace VPKSoft.MessageBoxExtended
         NoToAllRemember,
     }
 
-    // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+    // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
     /// <summary>
     /// An enumeration for the buttons for the dialog boxes used contained within the library.
     /// </summary>

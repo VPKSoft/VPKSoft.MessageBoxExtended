@@ -152,7 +152,7 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region ShowMethods                
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -186,7 +186,7 @@ namespace VPKSoft.MessageBoxExtended
             }
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -204,7 +204,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -221,7 +221,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -238,7 +238,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -254,7 +254,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -271,7 +271,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(null, text, caption, buttons, icon, useMnemonic);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -287,7 +287,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(null, text, caption, buttons, icon, true);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -323,7 +323,7 @@ namespace VPKSoft.MessageBoxExtended
             }
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -343,7 +343,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -362,7 +362,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -381,7 +381,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -399,7 +399,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -418,7 +418,7 @@ namespace VPKSoft.MessageBoxExtended
             return Show(null, text, caption, buttons, icon, useMnemonic, dialogResultAction);
         }
 
-        // Documentation: (©): Microsoft  (copy/paste) documentation whit modifications..
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
         /// <summary>
         /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
         /// </summary>
@@ -470,39 +470,10 @@ namespace VPKSoft.MessageBoxExtended
         {
             List<Button> uiButtons = new List<Button>();
 
+            uiButtons.AddRange(base.CreateButtons(buttons));
+
             switch (buttons)
             {
-                case MessageBoxButtonsExtended.OK:
-                    uiButtons.Add(ButtonOk);
-                    break;
-
-                case MessageBoxButtonsExtended.AbortRetryIgnore:
-                    uiButtons.Add(ButtonAbort);
-                    uiButtons.Add(ButtonRetry);
-                    uiButtons.Add(ButtonIgnore);
-                    break;
-
-                case MessageBoxButtonsExtended.OKCancel:
-                    uiButtons.Add(ButtonOk);
-                    uiButtons.Add(ButtonCancel);
-                    break;
-
-                case MessageBoxButtonsExtended.RetryCancel:
-                    uiButtons.Add(ButtonRetry);
-                    uiButtons.Add(ButtonCancel);
-                    break;
-
-                case MessageBoxButtonsExtended.YesNo:
-                    uiButtons.Add(ButtonYes);
-                    uiButtons.Add(ButtonNo);
-                    break;
-
-                case MessageBoxButtonsExtended.YesNoCancel:
-                    uiButtons.Add(ButtonYes);
-                    uiButtons.Add(ButtonNo);
-                    uiButtons.Add(ButtonCancel);
-                    break;
-
                 case MessageBoxButtonsExtended.YesNoYesToAll:
                     uiButtons.Add(ButtonNo);
                     uiButtons.Add(ButtonYesToAll);

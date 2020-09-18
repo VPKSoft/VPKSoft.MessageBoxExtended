@@ -74,6 +74,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="locale">A locale expressed as a string.</param>
         /// <param name="args">An object array that contains zero or more objects to format the message.</param>
         /// <returns>A localized message with the given parameters.</returns>
+        // ReSharper disable once UnusedMember.Global (this probably might be needed)..
         public string GetMessage(string messageName, string defaultMessage, string locale, params object[] args)
         {
             var value = LocalizationTexts.FirstOrDefault(f => f.CultureName == locale && f.MessageName == messageName);
