@@ -36,6 +36,7 @@
             // 
             // flpButtons
             // 
+            this.flpButtons.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flpButtons.BackColor = System.Drawing.SystemColors.Control;
             this.flpButtons.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.flpButtons.FlowDirection = System.Windows.Forms.FlowDirection.RightToLeft;

@@ -2436,6 +2436,10 @@ namespace VPKSoft.MessageBoxExtended
         // raise the ValidateTypeValue if subscribed..
         private void genericValue_Changed(object sender, EventArgs e)
         {
+            // this will be executed if assigned ignoring other flags..
+            DialogResultAction?.Invoke(DialogResultExtended.None, false,
+                sender.Equals(cmbDropDownValue) ? cmbDropDownValue.SelectedItem : GetValueTypeParam());
+
             if (SuspendValidation) // before the "possible" value is set, "suspend" the event handler..
             {
                 return;
@@ -2446,6 +2450,7 @@ namespace VPKSoft.MessageBoxExtended
                 IsValid = true,
                 TypeValue = sender.Equals(cmbDropDownValue) ? cmbDropDownValue.SelectedItem : GetValueTypeParam(),
                 Type = typeof(T),
+                DropDownMode = sender.Equals(cmbDropDownValue),
             };
 
             ValidateTypeValue?.Invoke(this, args);

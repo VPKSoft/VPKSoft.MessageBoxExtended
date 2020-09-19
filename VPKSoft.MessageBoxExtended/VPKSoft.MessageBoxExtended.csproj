@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\MessageBoxStack.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageBoxStack.Designer.cs">
+      <DependentUpon>MessageBoxStack.cs</DependentUpon>
+    </Compile>
     <Compile Include="Enumerations\TypeFormattingStyle.cs" />
     <Compile Include="Events\TypeValueValidationEventArgs.cs" />
     <Compile Include="MessageBoxBase.cs">
@@ -72,6 +78,12 @@
     <Compile Include="MessageBoxQueryPrimitiveValue.Designer.cs">
       <DependentUpon>MessageBoxQueryPrimitiveValue.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\MessageBoxControlBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MessageBoxControlBase.Designer.cs">
+      <DependentUpon>MessageBoxControlBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -82,6 +94,12 @@
     <Compile Include="Utility\PasswordMeasureStrength.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Controls\MessageBoxControlBase.resx">
+      <DependentUpon>MessageBoxControlBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MessageBoxStack.resx">
+      <DependentUpon>MessageBoxStack.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MessageBoxBase.resx">
       <DependentUpon>MessageBoxBase.cs</DependentUpon>
     </EmbeddedResource>
@@ -108,6 +126,11 @@
   <ItemGroup>
     <None Include="Resources\color_slide.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\win10_close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\win10_close_white.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

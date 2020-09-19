@@ -518,10 +518,37 @@ namespace VPKSoft.MessageBoxExtended
         public List<MessageBoxBase> MessageBoxInstances { get; } = new List<MessageBoxBase>();
 
         /// <summary>
+        /// Gets or sets a value indicating whether to close the <see cref="MessageBoxBase"/> message box on button click.
+        /// </summary>
+        /// <value><c>true</c> if to close the <see cref="MessageBoxBase"/> message box on button click; otherwise, <c>false</c>.</value>
+        public bool CloseOnClick { get; set; } = true;
+
+        /// <summary>
         /// Gets or sets the additional data to be passed to the <see cref="DialogResultAction"/> action.
         /// </summary>
         /// <value>The the additional data to be passed to the <see cref="DialogResultAction"/> action.</value>
         public object ActionData { get; set; }
+        #endregion
+
+        #region PublicMethods
+        /// <summary>
+        /// Closes the form.
+        /// </summary>
+        public new void Close()
+        {
+            if (CloseOnClick)
+            {
+                base.Close();
+            }
+        }
+
+        /// <summary>
+        /// Closes the form disregarding the value of the <see cref="CloseOnClick"/>.
+        /// </summary>
+        public void ForceClose()
+        {
+            base.Close();
+        }
         #endregion
 
         #region PublicStaticMethods

@@ -26,6 +26,11 @@ namespace VPKSoft.MessageBoxExtended.Events
         public Type Type { get; set; }
 
         /// <summary>
+        /// Gets or sets a value indicating whether the <see cref="MessageBoxQueryPrimitiveValue{T}"/> instance is drop-down selection mode.
+        /// </summary>
+        public bool DropDownMode { get; set; }
+
+        /// <summary>
         /// Gets or sets the validation error message.
         /// </summary>
         public string ValidationErrorMessage { get; set; }

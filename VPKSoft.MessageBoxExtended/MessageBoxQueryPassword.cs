@@ -584,6 +584,7 @@ namespace VPKSoft.MessageBoxExtended
         private void tbPassword_TextChanged(object sender, EventArgs e)
         {
             ButtonOk.Enabled = !string.IsNullOrEmpty(tbPassword.Text);
+            DialogResultAction?.Invoke(DialogResultExtended.None, false, tbPassword.Text);
             DisplayPasswordScore();
         }
 
@@ -628,7 +629,6 @@ namespace VPKSoft.MessageBoxExtended
 
             pnColorSlide.Width = pbColorSlide.Width - width;
             pnColorSlide.Left = pbColorSlide.Left + width;
-
         }
     }
 }

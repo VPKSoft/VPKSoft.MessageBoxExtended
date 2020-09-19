@@ -117,21 +117,4 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="messageBoxStackTest.CloseButtonHoverImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
-        IwAALiMBeKU/dgAAAAd0SU1FB+QJEwklBgD8J2kAAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJ
-        TVBXgQ4XAAAAVklEQVQ4T92PSw4AEBBD507ufzEbNBoZURNi523oT8I+o3QS5QIyFChXWMg4aQ2ibEIV
-        lRfiB/7O+Aw3vB+Dpwfc+P4LaqA8SVSMskELwbaADAXKPzCrq1i1YSxNaIcAAAAASUVORK5CYII=
-</value>
-  </data>
-  <data name="messageBoxStackTest.CloseButtonImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
-        IwAALiMBeKU/dgAAAAd0SU1FB+QJEwkJKZIccZ4AAAAZdEVYdENvbW1lbnQAQ3JlYXRlZCB3aXRoIEdJ
-        TVBXgQ4XAAAATElEQVQ4T2MYfuA/EBtDmFgBSA6kBicwZmBi/gWmMQE+ORSATSHRmmEAWQPJmmEAopFM
-        zSBAkQEUeQGbBqINwaeQKEMoTkhDDjAwAABKiRpNV50fJQAAAABJRU5ErkJggg==
-</value>
-  </data>
 </root>

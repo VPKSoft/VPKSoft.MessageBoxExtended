@@ -62,16 +62,21 @@ namespace TestApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            MessageBoxQueryPrimitiveValue<string>.Show(this, "Please give your first and last name", "First and last name",
+            MessageBoxQueryPrimitiveValue<string>.Show(this, "Please give your computer user name", "Computer user name",
                 MessageBoxIcon.Question, ref name);
         }
 
         private void MessageBoxQueryPrimitiveValue_ValidateTypeValue(object sender, VPKSoft.MessageBoxExtended.Events.TypeValueValidationEventArgs e)
         {
+            if (e.DropDownMode)
+            {
+                return;
+            }
+
             if (e.TypeValue.ToString() != name)
             {
-                e.IsValid = true;
-                e.ValidationErrorMessage = "Please type YOUR name!";
+                e.IsValid = false;
+                e.ValidationErrorMessage = "Please type YOUR computer user name!";
             }
         }
 
@@ -79,8 +84,18 @@ namespace TestApp
         {
             string dropDownValue = "Linux";
             MessageBoxQueryPrimitiveValue<string>.Show(this, "Select your operating system", "Operation system selection",
-                MessageBoxButtonsExtended.YesNo, MessageBoxIcon.Information, false, null, ComboBoxStyle.DropDown,
+                MessageBoxButtonsExtended.YesNo, MessageBoxIcon.Information, true, null, ComboBoxStyle.DropDown,
                 AutoCompleteMode.Suggest, new List<string>(new[] {"Windows", "OS X", "Linux", "Unix", "iOS", "BSD*"}), ref dropDownValue);
+        }
+
+        private int dialogCount = 1;
+
+        private void btAddQueryDialog_Click(object sender, EventArgs e)
+        {
+            messageBoxStackTest.AddDialog(new MessageBoxExtended("Helevetin helevetin helevetti!", $"Testing #{dialogCount++}..",
+                //MessageBoxButtonsExtended.YesNo, 
+                MessageBoxButtonsExtended.YesNoYesToAllRememberNoToAllRemember,
+                MessageBoxIcon.Hand));
         }
     }
 }
