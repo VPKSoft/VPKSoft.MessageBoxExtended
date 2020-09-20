@@ -27,19 +27,32 @@ SOFTWARE.
 using System;
 using System.Windows.Forms;
 
-namespace TestApp
+namespace VPKSoft.MessageBoxExtended.Controls.Enumerations
 {
-    static class Program
+    /// <summary>
+    /// An enumeration to indicate a button state to a simulated <see cref="Panel"/> button stored in the <see cref="Control.Tag"/> property.
+    /// </summary>
+    [Flags]
+    public enum ControlButtonState
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// No specific state.
         /// </summary>
-        [STAThread]
-        static void Main()
-        {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormMain());
-        }
+        None = 0,
+
+        /// <summary>
+        /// The mouse is hovering over the control.
+        /// </summary>
+        MouseHover = 1,
+
+        /// <summary>
+        /// The "button" state is expanded.
+        /// </summary>
+        Expanded = 2,
+
+        /// <summary>
+        /// The "button" state is minimized.
+        /// </summary>
+        Minimized = 4,
     }
 }

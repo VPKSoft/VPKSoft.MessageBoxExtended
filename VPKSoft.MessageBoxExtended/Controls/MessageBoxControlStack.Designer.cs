@@ -39,7 +39,6 @@
             this.pnStackDialog.Name = "pnStackDialog";
             this.pnStackDialog.Size = new System.Drawing.Size(561, 177);
             this.pnStackDialog.TabIndex = 0;
-            this.pnStackDialog.Resize += new System.EventHandler(this.pnStackDialog_Resize);
             // 
             // MessageBoxControlStack
             // 

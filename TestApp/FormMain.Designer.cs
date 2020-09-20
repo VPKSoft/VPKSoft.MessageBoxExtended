@@ -38,6 +38,7 @@
             this.tabControlTest = new System.Windows.Forms.TabPage();
             this.btAddQueryDialog = new System.Windows.Forms.Button();
             this.messageBoxStackTest = new VPKSoft.MessageBoxExtended.Controls.MessageBoxControlStack();
+            this.btPropertyTest = new System.Windows.Forms.Button();
             this.tcMain.SuspendLayout();
             this.tabDialogTest.SuspendLayout();
             this.tabControlTest.SuspendLayout();
@@ -112,6 +113,7 @@
             // 
             // tabControlTest
             // 
+            this.tabControlTest.Controls.Add(this.btPropertyTest);
             this.tabControlTest.Controls.Add(this.btAddQueryDialog);
             this.tabControlTest.Controls.Add(this.messageBoxStackTest);
             this.tabControlTest.Location = new System.Drawing.Point(4, 22);
@@ -141,10 +143,32 @@
             this.messageBoxStackTest.CloseButtonImage = ((System.Drawing.Image)(resources.GetObject("messageBoxStackTest.CloseButtonImage")));
             this.messageBoxStackTest.DialogCloseButtonBackground = System.Drawing.SystemColors.Window;
             this.messageBoxStackTest.DialogCloseButtonHoverBackground = System.Drawing.Color.FromArgb(((int)(((byte)(232)))), ((int)(((byte)(17)))), ((int)(((byte)(35)))));
+            this.messageBoxStackTest.DialogExpandButtonBackground = System.Drawing.SystemColors.Window;
+            this.messageBoxStackTest.DialogExpandButtonHoverBackground = System.Drawing.SystemColors.Control;
+            this.messageBoxStackTest.DialogTextForeColor = System.Drawing.SystemColors.ControlText;
+            this.messageBoxStackTest.DialogTitleExpandedForeColor = System.Drawing.SystemColors.ControlText;
+            this.messageBoxStackTest.DialogTitleForeColor = System.Drawing.SystemColors.ControlText;
+            this.messageBoxStackTest.ExpandButtonHoverImage = ((System.Drawing.Image)(resources.GetObject("messageBoxStackTest.ExpandButtonHoverImage")));
+            this.messageBoxStackTest.ExpandButtonImage = ((System.Drawing.Image)(resources.GetObject("messageBoxStackTest.ExpandButtonImage")));
+            this.messageBoxStackTest.ExpandButtonImageHoverMinimize = ((System.Drawing.Image)(resources.GetObject("messageBoxStackTest.ExpandButtonImageHoverMinimize")));
+            this.messageBoxStackTest.ExpandButtonImageMinimize = ((System.Drawing.Image)(resources.GetObject("messageBoxStackTest.ExpandButtonImageMinimize")));
+            this.messageBoxStackTest.FontDialogText = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.messageBoxStackTest.FontDialogTitle = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.messageBoxStackTest.FontDialogTitleExpanded = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messageBoxStackTest.Location = new System.Drawing.Point(6, 6);
             this.messageBoxStackTest.Name = "messageBoxStackTest";
             this.messageBoxStackTest.Size = new System.Drawing.Size(665, 272);
             this.messageBoxStackTest.TabIndex = 0;
+            // 
+            // btPropertyTest
+            // 
+            this.btPropertyTest.Location = new System.Drawing.Point(174, 341);
+            this.btPropertyTest.Name = "btPropertyTest";
+            this.btPropertyTest.Size = new System.Drawing.Size(162, 23);
+            this.btPropertyTest.TabIndex = 2;
+            this.btPropertyTest.Text = "Property set test";
+            this.btPropertyTest.UseVisualStyleBackColor = true;
+            this.btPropertyTest.Click += new System.EventHandler(this.btPropertyTest_Click);
             // 
             // FormMain
             // 
@@ -172,6 +196,7 @@
         private System.Windows.Forms.TabPage tabControlTest;
         private System.Windows.Forms.Button btAddQueryDialog;
         private VPKSoft.MessageBoxExtended.Controls.MessageBoxControlStack messageBoxStackTest;
+        private System.Windows.Forms.Button btPropertyTest;
     }
 }
 

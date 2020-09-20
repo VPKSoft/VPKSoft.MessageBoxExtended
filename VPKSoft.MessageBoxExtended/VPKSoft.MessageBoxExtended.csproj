@@ -1,120 +1,95 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A4909208-0F4B-4F6D-84B0-4486D8220042}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>VPKSoft.MessageBoxExtended</RootNamespace>
-    <AssemblyName>VPKSoft.MessageBoxExtended</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <TargetFramework>net47</TargetFramework>
+    <AssemblyTitle>VPKSoft.MessageBoxExtended</AssemblyTitle>
+    <Company>VPKSoft</Company>
+    <Product>VPKSoft.MessageBoxExtended</Product>
+    <Description>An extented message box for a Windows Forms applications.</Description>
+    <Copyright>Copyright © VPKSoft 2020</Copyright>
+    <Version>1.0.0.8</Version>
+    <AssemblyVersion>1.0.0.8</AssemblyVersion>
+    <FileVersion>1.0.0.8</FileVersion>
+    <DocumentationFile>bin\$(Configuration)\VPKSoft.MessageBoxExtended.xml</DocumentationFile>
+    <OutputPath>bin\$(Configuration)\</OutputPath>
+    <Authors>VPKSoft</Authors>
+    <PackageProjectUrl>https://github.com/VPKSoft/VPKSoft.MessageBoxExtended</PackageProjectUrl>
+    <PackageReleaseNotes>Added a generic message box being able to query primitive, decimal, string and List&lt;T&gt; values from the user. Fixed exception with generic ListT&gt;. Fixed the selected item setting for the combo box.</PackageReleaseNotes>
+    <PackageTags>dialog box messagebox winforms</PackageTags>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\VPKSoft.MessageBoxExtended.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\VPKSoft.MessageBoxExtended.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\MessageBoxControlStack.cs">
+    <Compile Update="Controls\MessageBoxControlStack.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\MessageBoxControlStack.Designer.cs">
+    <Compile Update="Controls\MessageBoxControlStack.Designer.cs">
       <DependentUpon>MessageBoxControlStack.cs</DependentUpon>
     </Compile>
-    <Compile Include="Enumerations\TypeFormattingStyle.cs" />
-    <Compile Include="Events\TypeValueValidationEventArgs.cs" />
-    <Compile Include="MessageBoxBase.cs">
+    <Compile Update="MessageBoxBase.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MessageBoxBase.Designer.cs">
+    <Compile Update="MessageBoxBase.Designer.cs">
       <DependentUpon>MessageBoxBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxEnumerations.cs" />
-    <Compile Include="MessageBoxExtended.cs">
+    <Compile Update="MessageBoxExtended.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MessageBoxExtended.Designer.cs">
+    <Compile Update="MessageBoxExtended.Designer.cs">
       <DependentUpon>MessageBoxExtended.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxQueryPassword.cs">
+    <Compile Update="MessageBoxQueryPassword.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MessageBoxQueryPassword.Designer.cs">
+    <Compile Update="MessageBoxQueryPassword.Designer.cs">
       <DependentUpon>MessageBoxQueryPassword.cs</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxQueryPrimitiveValue.cs">
+    <Compile Update="MessageBoxQueryPrimitiveValue.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MessageBoxQueryPrimitiveValue.Designer.cs">
+    <Compile Update="MessageBoxQueryPrimitiveValue.Designer.cs">
       <DependentUpon>MessageBoxQueryPrimitiveValue.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MessageBoxControlBase.cs">
+    <Compile Update="Controls\MessageBoxControlBase.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\MessageBoxControlBase.Designer.cs">
+    <Compile Update="Controls\MessageBoxControlBase.Designer.cs">
       <DependentUpon>MessageBoxControlBase.cs</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Update="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="TabDeliLocalization.cs" />
-    <Compile Include="Utility\PasswordMeasureStrength.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Controls\MessageBoxControlBase.resx">
+    <EmbeddedResource Update="Controls\MessageBoxControlBase.resx">
       <DependentUpon>MessageBoxControlBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\MessageBoxControlStack.resx">
+    <EmbeddedResource Update="Controls\MessageBoxControlStack.resx">
       <DependentUpon>MessageBoxControlStack.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageBoxBase.resx">
+    <EmbeddedResource Update="MessageBoxBase.resx">
       <DependentUpon>MessageBoxBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageBoxExtended.resx">
+    <EmbeddedResource Update="MessageBoxExtended.resx">
       <DependentUpon>MessageBoxExtended.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageBoxQueryPassword.resx">
+    <EmbeddedResource Update="MessageBoxQueryPassword.resx">
       <DependentUpon>MessageBoxQueryPassword.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MessageBoxQueryPrimitiveValue.resx">
+    <EmbeddedResource Update="MessageBoxQueryPrimitiveValue.resx">
       <DependentUpon>MessageBoxQueryPrimitiveValue.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -144,5 +119,10 @@
   <ItemGroup>
     <None Include="Resources\minus_flat_white.png" />
   </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <PackageReference Include="Fody" Version="6.2.6">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
+  </ItemGroup>
 </Project>
