@@ -528,6 +528,12 @@ namespace VPKSoft.MessageBoxExtended
         /// </summary>
         /// <value>The the additional data to be passed to the <see cref="DialogResultAction"/> action.</value>
         public object ActionData { get; set; }
+
+        /// <summary>
+        /// Gets the message text in the dialog box.
+        /// </summary>
+        /// <value>The message text in the dialog box.</value>
+        public virtual string MessageText => throw new NotImplementedException();
         #endregion
 
         #region PublicMethods
@@ -540,6 +546,16 @@ namespace VPKSoft.MessageBoxExtended
             {
                 base.Close();
             }
+        }
+
+        /// <summary>
+        /// Gets the icon displayed in the message box.
+        /// </summary>
+        /// <param name="size">The size the icon should be returned.</param>
+        /// <returns>A <see cref="Image"/> instance containing the message box icon resized to the specified size.</returns>
+        public virtual Image GetIcon(Size size)
+        {
+            throw new NotImplementedException();
         }
 
         /// <summary>

@@ -45,11 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\MessageBoxStack.cs">
+    <Compile Include="Controls\MessageBoxControlStack.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\MessageBoxStack.Designer.cs">
-      <DependentUpon>MessageBoxStack.cs</DependentUpon>
+    <Compile Include="Controls\MessageBoxControlStack.Designer.cs">
+      <DependentUpon>MessageBoxControlStack.cs</DependentUpon>
     </Compile>
     <Compile Include="Enumerations\TypeFormattingStyle.cs" />
     <Compile Include="Events\TypeValueValidationEventArgs.cs" />
@@ -97,8 +97,8 @@
     <EmbeddedResource Include="Controls\MessageBoxControlBase.resx">
       <DependentUpon>MessageBoxControlBase.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Controls\MessageBoxStack.resx">
-      <DependentUpon>MessageBoxStack.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\MessageBoxControlStack.resx">
+      <DependentUpon>MessageBoxControlStack.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MessageBoxBase.resx">
       <DependentUpon>MessageBoxBase.cs</DependentUpon>
@@ -131,6 +131,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\win10_close_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_flat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus_flat.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\plus_flat_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\minus_flat_white.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

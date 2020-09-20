@@ -95,7 +95,7 @@ namespace TestApp
             messageBoxStackTest.AddDialog(new MessageBoxExtended("Helevetin helevetin helevetti!", $"Testing #{dialogCount++}..",
                 //MessageBoxButtonsExtended.YesNo, 
                 MessageBoxButtonsExtended.YesNoYesToAllRememberNoToAllRemember,
-                MessageBoxIcon.Hand));
+                MessageBoxIcon.Hand), false);
         }
     }
 }

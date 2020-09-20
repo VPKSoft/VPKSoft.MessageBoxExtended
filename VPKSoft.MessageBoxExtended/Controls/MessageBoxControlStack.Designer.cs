@@ -1,6 +1,6 @@
 ﻿namespace VPKSoft.MessageBoxExtended.Controls
 {
-    partial class MessageBoxStack
+    partial class MessageBoxControlStack
     {
         /// <summary> 
         /// Required designer variable.
@@ -41,12 +41,12 @@
             this.pnStackDialog.TabIndex = 0;
             this.pnStackDialog.Resize += new System.EventHandler(this.pnStackDialog_Resize);
             // 
-            // MessageBoxStack
+            // MessageBoxControlStack
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.pnStackDialog);
-            this.Name = "MessageBoxStack";
+            this.Name = "MessageBoxControlStack";
             this.Size = new System.Drawing.Size(561, 177);
             this.ResumeLayout(false);
 

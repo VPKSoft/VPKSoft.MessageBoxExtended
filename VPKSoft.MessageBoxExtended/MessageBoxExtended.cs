@@ -633,5 +633,25 @@ namespace VPKSoft.MessageBoxExtended
             }
         }
         #endregion
+
+        #region PublicProperties        
+        /// <summary>
+        /// Gets the message text in the dialog box.
+        /// </summary>
+        /// <value>The message text in the dialog box.</value>
+        public override string MessageText => lbText.Text;
+        #endregion
+
+        #region PublicMethods        
+        /// <summary>
+        /// Gets the icon displayed in the message box.
+        /// </summary>
+        /// <param name="size">The size the icon should be returned.</param>
+        /// <returns>A <see cref="Image" /> instance containing the message box icon resized to the specified size.</returns>
+        public override Image GetIcon(Size size)
+        {
+            return pbMessageBoxIcon.Image != null ? new Bitmap(pbMessageBoxIcon.Image, size) : null;
+        }
+        #endregion
     }
 }

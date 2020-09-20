@@ -37,7 +37,7 @@
             this.tabDialogTest = new System.Windows.Forms.TabPage();
             this.tabControlTest = new System.Windows.Forms.TabPage();
             this.btAddQueryDialog = new System.Windows.Forms.Button();
-            this.messageBoxStackTest = new VPKSoft.MessageBoxExtended.Controls.MessageBoxStack();
+            this.messageBoxStackTest = new VPKSoft.MessageBoxExtended.Controls.MessageBoxControlStack();
             this.tcMain.SuspendLayout();
             this.tabDialogTest.SuspendLayout();
             this.tabControlTest.SuspendLayout();
@@ -171,7 +171,7 @@
         private System.Windows.Forms.TabPage tabDialogTest;
         private System.Windows.Forms.TabPage tabControlTest;
         private System.Windows.Forms.Button btAddQueryDialog;
-        private VPKSoft.MessageBoxExtended.Controls.MessageBoxStack messageBoxStackTest;
+        private VPKSoft.MessageBoxExtended.Controls.MessageBoxControlStack messageBoxStackTest;
     }
 }
 

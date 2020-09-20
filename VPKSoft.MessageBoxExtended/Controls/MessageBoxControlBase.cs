@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -36,8 +37,9 @@ namespace VPKSoft.MessageBoxExtended.Controls
         /// Creates the container control for the dialog box to be added to the control.
         /// </summary>
         /// <param name="messageBox">The message box to add to the control.</param>
+        /// <param name="minimized">A value indicating whether the message box should be minimized in the container control.</param>
         /// <returns>The container control for the dialog box to be added to the control.</returns>
-        protected virtual Control CreateContainerControl(MessageBoxBase messageBox)
+        protected virtual Control CreateContainerControl(MessageBoxBase messageBox, bool minimized)
         {
             throw new NotImplementedException();
         }
@@ -92,7 +94,8 @@ namespace VPKSoft.MessageBoxExtended.Controls
         /// Adds the dialog to the control.
         /// </summary>
         /// <param name="messageBox">The dialog to add to the control.</param>
-        public virtual void AddDialog(MessageBoxBase messageBox)
+        /// <param name="minimized">A value indicated whether the message box should be added as minimized.</param>
+        public virtual void AddDialog(MessageBoxBase messageBox, bool minimized)
         {
             MessageBoxes.Add(messageBox);
         }
@@ -110,18 +113,6 @@ namespace VPKSoft.MessageBoxExtended.Controls
 
         #region PublicProperties        
         /// <summary>
-        /// Gets or sets the dialog close button background color (inactive).
-        /// </summary>
-        /// <value>The dialog close button background color (inactive).</value>
-        public Color DialogCloseButtonBackground { get; set; } = SystemColors.Window;
-
-        /// <summary>
-        /// Gets or sets the dialog close button hover background color (active).
-        /// </summary>
-        /// <value>The dialog close button hover background color (active).</value>
-        public Color DialogCloseButtonHoverBackground { get; set; } = Color.FromArgb(0xff, 0xe8, 0x11, 0x23);
-
-        /// <summary>
         /// Returns an enumerator that iterates through the collection.
         /// </summary>
         /// <returns>An enumerator that can be used to iterate through the collection.</returns>
@@ -134,6 +125,7 @@ namespace VPKSoft.MessageBoxExtended.Controls
         /// Gets the element in the collection at the current position of the enumerator.
         /// </summary>
         /// <value>The current.</value>
+        [Browsable(false)]
         public MessageBoxBase Current 
         {
             get
@@ -146,18 +138,6 @@ namespace VPKSoft.MessageBoxExtended.Controls
                 return MessageBoxes[location];
             }
         }
-
-        /// <summary>
-        /// Gets or sets the close button image when the <see cref="MessageBoxBase"/> <see cref="BorderStyle"/> is set to <see cref="BorderStyle.None"/>.
-        /// </summary>
-        /// <value>The close button image when the <see cref="MessageBoxBase"/> <see cref="BorderStyle"/> is set to <see cref="BorderStyle.None"/>.</value>
-        public Image CloseButtonImage { get; set; } = Properties.Resources.win10_close;
-
-        /// <summary>
-        /// Gets or sets the close button image when the <see cref="MessageBoxBase"/> <see cref="BorderStyle"/> is set to <see cref="BorderStyle.None"/> and mouse hovers over the button.
-        /// </summary>
-        /// <value>The close button image when the <see cref="MessageBoxBase"/> <see cref="BorderStyle"/> is set to <see cref="BorderStyle.None"/> and mouse hovers over the button.</value>
-        public Image CloseButtonHoverImage { get; set; } = Properties.Resources.win10_close_white;
         #endregion
     }
 }

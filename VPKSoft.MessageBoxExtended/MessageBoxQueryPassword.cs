@@ -534,6 +534,14 @@ namespace VPKSoft.MessageBoxExtended
         }
         #endregion
 
+        #region PublicProperties        
+        /// <summary>
+        /// Gets the message text in the dialog box.
+        /// </summary>
+        /// <value>The message text in the dialog box.</value>
+        public override string MessageText => lbText.Text;
+        #endregion
+
         /// <summary>
         /// Gets a value indicating whether to display a label indicating that the given password is invalid.
         /// </summary>
