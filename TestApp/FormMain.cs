@@ -26,7 +26,6 @@ SOFTWARE.
 
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Windows.Forms;
 using VPKSoft.MessageBoxExtended;
 
@@ -38,34 +37,49 @@ namespace TestApp
         {
             InitializeComponent();
             MessageBoxQueryPrimitiveValue<string>.ValidateTypeValue += MessageBoxQueryPrimitiveValue_ValidateTypeValue;
+
+            ListDialogTypes();
+            ListDialogButtons();
+            cmbLocale.SelectedIndex = 1;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void ListDialogTypes()
         {
-            MessageBoxBase.Localize("fi");
+            List<int> addedValues = new List<int>();
 
-            MessageBox.Show(
-                MessageBoxExtended.Show(this, "Helevetin helevetin helevetti!", "Testing..",
-                    //MessageBoxButtonsExtended.YesNo, 
-                    MessageBoxButtonsExtended.YesNoYesToAllRememberNoToAllRemember,
-                    MessageBoxIcon.Hand).ToString());
+            foreach (var value in Enum.GetValues(typeof(MessageBoxIcon)))
+            {
+                if (addedValues.Contains((int) value))
+                {
+                    continue;
+                }
+
+                addedValues.Add((int)value);
+                cmbDialogType.Items.Add(value);
+            }
+
+            cmbDialogType.SelectedItem = MessageBoxIcon.Asterisk;
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void ListDialogButtons()
         {
-            MessageBoxBase.Localize("fi");
+            List<int> addedValues = new List<int>();
 
-            MessageBox.Show(
-                MessageBoxQueryPassword.Show(this, "Anna salasana:", "Salasana", true, true, true));
+            foreach (var value in Enum.GetValues(typeof(MessageBoxButtonsExtended)))
+            {
+                if (addedValues.Contains((int) value))
+                {
+                    continue;
+                }
+
+                addedValues.Add((int)value);
+                cmbDialogButtons.Items.Add(value);
+            }
+
+            cmbDialogButtons.SelectedItem = MessageBoxButtonsExtended.YesNo;
         }
 
         private string name = Environment.GetEnvironmentVariable("USERNAME");
-
-        private void button3_Click(object sender, EventArgs e)
-        {
-            MessageBoxQueryPrimitiveValue<string>.Show(this, "Please give your computer user name", "Computer user name",
-                MessageBoxIcon.Question, ref name);
-        }
 
         private void MessageBoxQueryPrimitiveValue_ValidateTypeValue(object sender, VPKSoft.MessageBoxExtended.Events.TypeValueValidationEventArgs e)
         {
@@ -81,7 +95,84 @@ namespace TestApp
             }
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private string AddNumbers(string text)
+        {
+            var previous = text;
+            text = text.Replace("#N1#", ((int) numericUpDown1.Value).ToString());
+
+            if (text != previous)
+            {
+                if ((int)numericUpDown1.Value == 9999)
+                {
+                    numericUpDown1.Value = 1;
+                }
+                else
+                {
+                    numericUpDown1.Value++;
+                }
+            }
+
+            previous = text;
+            text = text.Replace("#N2#", ((int) numericUpDown2.Value).ToString());
+
+            if (text != previous)
+            {
+                if ((int)numericUpDown2.Value == 9999)
+                {
+                    numericUpDown2.Value = 1;
+                }
+                else
+                {
+                    numericUpDown2.Value++;
+                }
+            }
+
+            return text;
+        }
+
+        private void btAddDialog_Click(object sender, EventArgs e)
+        {
+            if (tcMain.SelectedTab == tabExpandStack)
+            {
+                messageBoxExpandStack.AddDialog(new MessageBoxExtended(AddNumbers(tbDialogText.Text), AddNumbers(tbDialogTitle.Text),
+                    (MessageBoxButtonsExtended)cmbDialogButtons.SelectedItem,
+                    (MessageBoxIcon)cmbDialogType.SelectedItem), false);
+            }
+
+            if (tcMain.SelectedTab == tabResizeDialogContainer)
+            {
+                messageBoxContainerResize.AddDialog(new MessageBoxExtended(AddNumbers(tbDialogText.Text), AddNumbers(tbDialogTitle.Text),
+                    (MessageBoxButtonsExtended)cmbDialogButtons.SelectedItem,
+                    (MessageBoxIcon)cmbDialogType.SelectedItem), false);
+            }
+        }
+
+        private void messageBoxExpandStack_MessageBoxClosed(object sender, VPKSoft.MessageBoxExtended.Controls.MessageBoxEventArgs e)
+        {
+            e.AllowMessageBoxClose = true;
+        }
+
+        private void btTestErrorMessage_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                MessageBoxExtended.Show(this, "Testing catastrophic failure message!", "Testing..",
+                    MessageBoxButtonsExtended.YesNoYesToAllRememberNoToAllRemember,
+                    MessageBoxIcon.Hand).ToString());
+        }
+
+        private void btTestPasswordDialog_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(
+                MessageBoxQueryPassword.Show(this, "Provide your password:", "Password", true, true, true));
+        }
+
+        private void btStringQueryTest_Click(object sender, EventArgs e)
+        {
+            MessageBoxQueryPrimitiveValue<string>.Show(this, "Please give your computer user name", "Computer user name",
+                MessageBoxIcon.Question, ref name);
+        }
+
+        private void btTestDropDownSelect_Click(object sender, EventArgs e)
         {
             string dropDownValue = "Linux";
             MessageBoxQueryPrimitiveValue<string>.Show(this, "Select your operating system", "Operation system selection",
@@ -89,19 +180,16 @@ namespace TestApp
                 AutoCompleteMode.Suggest, new List<string>(new[] {"Windows", "OS X", "Linux", "Unix", "iOS", "BSD*"}), ref dropDownValue);
         }
 
-        private int dialogCount = 1;
-
-        private void btAddQueryDialog_Click(object sender, EventArgs e)
+        private void tcMain_Selected(object sender, TabControlEventArgs e)
         {
-            messageBoxStackTest.AddDialog(new MessageBoxExtended("Helevetin helevetin helevetti!", $"Testing #{dialogCount++}..",
-                //MessageBoxButtonsExtended.YesNo, 
-                MessageBoxButtonsExtended.YesNoYesToAllRememberNoToAllRemember,
-                MessageBoxIcon.Hand), false);
+            pnTabPageFirst.Visible = e.TabPage == tabDialogTest;
         }
 
-        private void btPropertyTest_Click(object sender, EventArgs e)
+        private void cmbLocale_SelectedIndexChanged(object sender, EventArgs e)
         {
-            messageBoxStackTest.FontDialogTitle = new Font(Font, FontStyle.Italic);
+            var combo = (ComboBox) sender;
+            var locale = combo.SelectedItem.ToString().Split('/')[1].Trim().Substring(0, 2);
+            MessageBoxBase.Localize(locale);
         }
     }
 }

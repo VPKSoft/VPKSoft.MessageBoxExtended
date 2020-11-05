@@ -116,6 +116,8 @@ namespace VPKSoft.MessageBoxExtended
             SuspendValidation = false;
 
             value = GetValue();
+
+            MessageBoxType = MessageBoxType.Question;
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -503,6 +505,8 @@ namespace VPKSoft.MessageBoxExtended
             cmbDropDownValue.SelectedItem = value;
 
             SuspendValidation = false;
+
+            MessageBoxType = MessageBoxType.Question;
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....

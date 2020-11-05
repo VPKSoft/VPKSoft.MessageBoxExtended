@@ -16,6 +16,11 @@
     <PackageReleaseNotes>Added a generic message box being able to query primitive, decimal, string and List&lt;T&gt; values from the user. Fixed exception with generic ListT&gt;. Fixed the selected item setting for the combo box.</PackageReleaseNotes>
     <PackageTags>dialog box messagebox winforms</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageIcon>vpksoft_logo.png</PackageIcon>
+    <RepositoryUrl>https://github.com/VPKSoft/VPKSoft.MessageBoxExtended</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -24,45 +29,44 @@
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.1.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.2.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.3.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.4.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.5.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.6.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.7.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.8.nupkg" />
+    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.nupkg" />
+  </ItemGroup>
+  <ItemGroup>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Update="Controls\MessageBoxControlStack.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="Controls\MessageBoxControlStack.cs" />
     <Compile Update="Controls\MessageBoxControlStack.Designer.cs">
       <DependentUpon>MessageBoxControlStack.cs</DependentUpon>
     </Compile>
-    <Compile Update="MessageBoxBase.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="MessageBoxBase.cs" />
     <Compile Update="MessageBoxBase.Designer.cs">
       <DependentUpon>MessageBoxBase.cs</DependentUpon>
     </Compile>
-    <Compile Update="MessageBoxExtended.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="MessageBoxExtended.cs" />
     <Compile Update="MessageBoxExtended.Designer.cs">
       <DependentUpon>MessageBoxExtended.cs</DependentUpon>
     </Compile>
-    <Compile Update="MessageBoxQueryPassword.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="MessageBoxQueryPassword.cs" />
     <Compile Update="MessageBoxQueryPassword.Designer.cs">
       <DependentUpon>MessageBoxQueryPassword.cs</DependentUpon>
     </Compile>
-    <Compile Update="MessageBoxQueryPrimitiveValue.cs">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Update="MessageBoxQueryPrimitiveValue.cs" />
     <Compile Update="MessageBoxQueryPrimitiveValue.Designer.cs">
       <DependentUpon>MessageBoxQueryPrimitiveValue.cs</DependentUpon>
     </Compile>
-    <Compile Update="Controls\MessageBoxControlBase.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Update="Controls\MessageBoxControlBase.cs" />
     <Compile Update="Controls\MessageBoxControlBase.Designer.cs">
       <DependentUpon>MessageBoxControlBase.cs</DependentUpon>
     </Compile>
@@ -91,9 +95,17 @@
     <EmbeddedResource Update="MessageBoxQueryPrimitiveValue.resx">
       <DependentUpon>MessageBoxQueryPrimitiveValue.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Update="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\password.png" />
+    <None Include="vpksoft_logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Localization.txt" />

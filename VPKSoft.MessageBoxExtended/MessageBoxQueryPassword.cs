@@ -94,6 +94,8 @@ namespace VPKSoft.MessageBoxExtended
 
             pbColorSlide.Image = PasswordStrengthSliderImage;
             pbMessageBoxIcon.Image = PasswordIconImage;
+
+            MessageBoxType = MessageBoxType.QueryPassword;
         }
 
         /// <summary>

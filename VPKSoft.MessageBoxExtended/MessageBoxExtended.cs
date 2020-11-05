@@ -91,6 +91,7 @@ namespace VPKSoft.MessageBoxExtended
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
             GetMessageBoxIcon(icon), useMnemonic, dialogResultAction)
         {
+            MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
 
         /// <summary>
@@ -106,6 +107,7 @@ namespace VPKSoft.MessageBoxExtended
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
             GetMessageBoxIcon(icon), true, dialogResultAction)
         {
+            MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
 
         /// <summary>
@@ -148,6 +150,7 @@ namespace VPKSoft.MessageBoxExtended
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic) : this(text, caption, buttons,
             GetMessageBoxIcon(icon), useMnemonic, null)
         {
+            MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
 
         /// <summary>
@@ -161,6 +164,7 @@ namespace VPKSoft.MessageBoxExtended
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon) : this(text, caption, buttons,
             GetMessageBoxIcon(icon), true, null)
         {
+            MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
 
         /// <summary>
@@ -464,6 +468,31 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region PrivateMethods
+
+        private static MessageBoxType GetTypeFromIconEnumeration(MessageBoxIcon icon)
+        {
+            switch (icon)
+            {
+                case MessageBoxIcon.None:
+                    return MessageBoxType.Undefined;
+
+                case MessageBoxIcon.Stop: // (or MessageBoxIcon.Hand, aliased enumeration..)
+                    return MessageBoxType.Error;
+
+                case MessageBoxIcon.Question:
+                    return MessageBoxType.Question;
+
+                case MessageBoxIcon.Warning: // (or MessageBoxIcon.Exclamation, aliased enumeration..)
+                    return MessageBoxType.Warning;
+
+                case MessageBoxIcon.Asterisk:
+                    return MessageBoxType.Information; // (or MessageBoxIcon.Information, aliased enumeration..)
+
+                default:
+                    return MessageBoxType.Undefined;
+            }
+        }
+
         private void MessageBoxExtended_Shown(object sender, EventArgs e)
         {
             var coordinateY = BaseSizeTop.Height;
@@ -652,7 +681,7 @@ namespace VPKSoft.MessageBoxExtended
             {
                 if (DisplayRememberBox)
                 {
-                    return cbRememberAnswer.Checked;
+                    return cbRememberAnswer.Checked || RememberAnswerDialogResult;
                 }
 
                 return false;

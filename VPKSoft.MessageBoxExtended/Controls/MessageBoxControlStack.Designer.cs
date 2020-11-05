@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.pnStackDialog = new System.Windows.Forms.Panel();
+            this.ttMain = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // pnStackDialog
@@ -54,5 +56,6 @@
         #endregion
 
         private System.Windows.Forms.Panel pnStackDialog;
+        private System.Windows.Forms.ToolTip ttMain;
     }
 }

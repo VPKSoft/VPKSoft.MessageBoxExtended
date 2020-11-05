@@ -28,7 +28,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
 using System.Windows.Forms;
 
 namespace VPKSoft.MessageBoxExtended.Controls
@@ -65,6 +64,7 @@ namespace VPKSoft.MessageBoxExtended.Controls
         /// <param name="messageBox">The message box to add to the control.</param>
         /// <param name="minimized">A value indicating whether the message box should be minimized in the container control.</param>
         /// <returns>The container control for the dialog box to be added to the control.</returns>
+        // ReSharper disable once UnusedMemberInSuper.Global
         protected virtual Control CreateContainerControl(MessageBoxBase messageBox, bool minimized)
         {
             throw new NotImplementedException();
@@ -127,6 +127,18 @@ namespace VPKSoft.MessageBoxExtended.Controls
         }
 
         /// <summary>
+        /// Adds the dialog to the control.
+        /// </summary>
+        /// <param name="messageBox">The dialog to add to the control.</param>
+        /// <param name="minimized">A value indicated whether the message box should be added as minimized.</param>
+        /// <param name="priority">The priority of the message box added to the control. This is an integer value and the importance grows upwards.</param>
+        public virtual void AddDialog(MessageBoxBase messageBox, bool minimized, uint priority)
+        {
+            messageBox.Priority = priority;
+            MessageBoxes.Add(messageBox);
+        }
+
+        /// <summary>
         /// Removes the dialog to the control.
         /// </summary>
         /// <param name="messageBox">The dialog to remove from the control.</param>
@@ -163,6 +175,30 @@ namespace VPKSoft.MessageBoxExtended.Controls
 
                 return MessageBoxes[location];
             }
+        }
+        #endregion
+
+        #region PublicEvents                
+        /// <summary>
+        /// A delegate for the <see cref="MessageBoxClosed"/> event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MessageBoxEventArgs"/> instance containing the event data.</param>
+        public delegate void OnDialogBoxClosed(object sender, MessageBoxEventArgs e);
+
+        /// <summary>
+        /// Occurs when the message box is closed.
+        /// </summary>
+        public event OnDialogBoxClosed MessageBoxClosed;
+
+        /// <summary>
+        /// Raises the <see cref="MessageBoxClosed"/> event.
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="MessageBoxEventArgs"/> instance containing the event data.</param>
+        internal void RaiseMessageBoxClosed(object sender, MessageBoxEventArgs e)
+        {
+            MessageBoxClosed?.Invoke(sender, e);
         }
         #endregion
     }

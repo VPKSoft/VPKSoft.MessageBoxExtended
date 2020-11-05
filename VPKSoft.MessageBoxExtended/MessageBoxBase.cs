@@ -48,12 +48,31 @@ namespace VPKSoft.MessageBoxExtended
         {
             InitializeComponent();
             Disposed += messageBoxBase_Disposed;
+            Shown += messageBoxBase_Shown;
+            VisibleChanged += messageBoxBase_VisibleChanged;
             MessageBoxInstances.Add(this);
+        }
+        #endregion
+
+        #region InternalEvents
+        private void messageBoxBase_VisibleChanged(object sender, EventArgs e)
+        {
+            if (Visible)
+            {
+                DialogShown = DateTime.Now;
+            }
+        }
+
+        private void messageBoxBase_Shown(object sender, EventArgs e)
+        {
+            DialogShown = DateTime.Now;
         }
 
         private void messageBoxBase_Disposed(object sender, EventArgs e)
         {
             Disposed -= messageBoxBase_Disposed;
+            Shown -= messageBoxBase_Shown;
+            VisibleChanged -= messageBoxBase_VisibleChanged;            
             MessageBoxInstances.Remove(this);
         }
         #endregion
@@ -423,13 +442,6 @@ namespace VPKSoft.MessageBoxExtended
 
         #region ProtectedProperties
         /// <summary>
-        /// Gets or sets the dialog result <see cref="Action{DialogResultExtended, Boolean}"/> action which is called when a button is pressed in the dialog.
-        /// The boolean value is a value whether the user answer should be remembered.
-        /// </summary>
-        /// <value>The action which is called when a button is pressed in the dialog.</value>
-        protected Action<DialogResultExtended, bool, object> DialogResultAction { get; set; } 
-
-        /// <summary>
         /// Gets the height of the label with the dialog text.
         /// </summary>
         // ReSharper disable once UnusedMember.Global
@@ -437,7 +449,7 @@ namespace VPKSoft.MessageBoxExtended
         {
             get
             {
-                using(Graphics graphics = CreateGraphics())
+                using(var graphics = CreateGraphics())
                 {
                     var size = graphics.MeasureString(lbText.Text, lbText.Font,
                         lbText.Width - lbText.Margin.Horizontal);
@@ -462,11 +474,6 @@ namespace VPKSoft.MessageBoxExtended
                 }
             }
         }
-
-        /// <summary>
-        /// The <see cref="DialogResultExtended"/> returned by a call to the the Show() method.
-        /// </summary>
-        protected DialogResultExtended Result { get; set; } = DialogResultExtended.None;
 
         /// <summary>
         /// Gets the top base size for the dialog size calculation.
@@ -510,7 +517,73 @@ namespace VPKSoft.MessageBoxExtended
         }
         #endregion
 
+        private static ulong _id = 1;
+
         #region PublicProperties        
+        /// <summary>
+        /// Gets or sets the type of the message box.
+        /// </summary>
+        /// <value>The type of the message box.</value>
+        public MessageBoxType MessageBoxType { get; set; }
+
+        private ulong? instanceId;
+
+        /// <summary>
+        /// Gets the unique identifier of the dialog.
+        /// </summary>
+        /// <value>The unique identifier of the dialog.</value>
+        public ulong Id
+        {
+            get
+            {
+                instanceId = instanceId ?? _id++;
+                return (ulong)instanceId;
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the priority/severity of the message the dialog is displaying. This is an integer value and the importance grows upwards.
+        /// </summary>
+        /// <value>The priority/severity of the message the dialog is displaying.</value>
+        public uint Priority { get; set; }
+
+        /// <summary>
+        /// Gets or sets the group identifier for this <see cref="MessageBoxBase"/> class instance.
+        /// </summary>
+        /// <value>The group identifier for this <see cref="MessageBoxBase"/> class instance.</value>
+        public int GroupId { get; set; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="DateTime"/> the dialog was created.
+        /// </summary>
+        /// <value>The <see cref="DateTime"/> the dialog was created.</value>
+        public DateTime DialogCreated { get; set; } = DateTime.Now;
+
+        /// <summary>
+        /// Gets or sets the <see cref="DateTime"/> the dialog was last shown.
+        /// </summary>
+        /// <value>The <see cref="DateTime"/> the dialog was last shown.</value>
+        public DateTime DialogShown { get; set; }
+
+        /// <summary>
+        /// Gets or sets a value indicating whether the dialog result indicates that the answer should be remembered.
+        /// </summary>
+        /// <value><c>true</c> if the answer should be remembered; otherwise, <c>false</c>.</value>
+        public bool RememberAnswerDialogResult => Result == DialogResultExtended.NoToAllRemember |
+                                                  Result == DialogResultExtended.YesToAllRemember;
+
+        /// <summary>
+        /// The <see cref="DialogResultExtended"/> returned by a call to the the Show() method.
+        /// </summary>
+        public DialogResultExtended Result { get; set; } = DialogResultExtended.None;
+
+        /// <summary>
+        /// Gets or sets the dialog result <see cref="Action{DialogResultExtended, Boolean}"/> action which is called when a button is pressed in the dialog.
+        /// The boolean value is a value whether the user answer should be remembered.
+        /// </summary>
+        /// <value>The action which is called when a button is pressed in the dialog.</value>
+        public Action<DialogResultExtended, bool, object> DialogResultAction { get; set; }
+
         /// <summary>
         /// Gets the currently existing <see cref="MessageBoxBase"/> instances.
         /// </summary>
