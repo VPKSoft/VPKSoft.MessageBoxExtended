@@ -53,8 +53,8 @@
             this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
             this.label2 = new System.Windows.Forms.Label();
             this.pnTabPageFirst = new System.Windows.Forms.Panel();
-            this.lbLocalize = new System.Windows.Forms.Label();
             this.cmbLocale = new System.Windows.Forms.ComboBox();
+            this.lbLocalize = new System.Windows.Forms.Label();
             this.tcMain.SuspendLayout();
             this.tabDialogTest.SuspendLayout();
             this.tabResizeDialogContainer.SuspendLayout();
@@ -366,15 +366,6 @@
             this.pnTabPageFirst.Size = new System.Drawing.Size(685, 77);
             this.pnTabPageFirst.TabIndex = 18;
             // 
-            // lbLocalize
-            // 
-            this.lbLocalize.AutoSize = true;
-            this.lbLocalize.Location = new System.Drawing.Point(7, 7);
-            this.lbLocalize.Name = "lbLocalize";
-            this.lbLocalize.Size = new System.Drawing.Size(61, 13);
-            this.lbLocalize.TabIndex = 0;
-            this.lbLocalize.Text = "Localize to:";
-            // 
             // cmbLocale
             // 
             this.cmbLocale.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -387,6 +378,15 @@
             this.cmbLocale.Size = new System.Drawing.Size(224, 21);
             this.cmbLocale.TabIndex = 1;
             this.cmbLocale.SelectedIndexChanged += new System.EventHandler(this.cmbLocale_SelectedIndexChanged);
+            // 
+            // lbLocalize
+            // 
+            this.lbLocalize.AutoSize = true;
+            this.lbLocalize.Location = new System.Drawing.Point(7, 7);
+            this.lbLocalize.Name = "lbLocalize";
+            this.lbLocalize.Size = new System.Drawing.Size(61, 13);
+            this.lbLocalize.TabIndex = 0;
+            this.lbLocalize.Text = "Localize to:";
             // 
             // FormMain
             // 
@@ -408,6 +408,7 @@
             this.Controls.Add(this.lbDialogText);
             this.Controls.Add(this.lbDialogTitle);
             this.Controls.Add(this.tcMain);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormMain";
             this.Text = "A test application for the VPKSoft.MessageBoxExtended library.";
             this.tcMain.ResumeLayout(false);

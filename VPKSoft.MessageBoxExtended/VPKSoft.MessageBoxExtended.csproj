@@ -6,21 +6,21 @@
     <Product>VPKSoft.MessageBoxExtended</Product>
     <Description>An extented message box for a Windows Forms applications.</Description>
     <Copyright>Copyright © VPKSoft 2020</Copyright>
-    <Version>1.0.0.8</Version>
-    <AssemblyVersion>1.0.0.8</AssemblyVersion>
-    <FileVersion>1.0.0.8</FileVersion>
+    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.1.0</AssemblyVersion>
+    <FileVersion>1.0.1.0</FileVersion>
     <DocumentationFile>bin\$(Configuration)\VPKSoft.MessageBoxExtended.xml</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>VPKSoft</Authors>
     <PackageProjectUrl>https://github.com/VPKSoft/VPKSoft.MessageBoxExtended</PackageProjectUrl>
-    <PackageReleaseNotes>Added a generic message box being able to query primitive, decimal, string and List&lt;T&gt; values from the user. Fixed exception with generic ListT&gt;. Fixed the selected item setting for the combo box.</PackageReleaseNotes>
+    <PackageReleaseNotes>See: https://github.com/VPKSoft/VPKSoft.MessageBoxExtended</PackageReleaseNotes>
     <PackageTags>dialog box messagebox winforms</PackageTags>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageIcon>vpksoft_logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/VPKSoft/VPKSoft.MessageBoxExtended</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -104,7 +104,7 @@
     <None Include="Resources\password.png" />
     <None Include="vpksoft_logo.png">
       <Pack>True</Pack>
-      <PackagePath></PackagePath>
+      <PackagePath />
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -132,9 +132,9 @@
     <None Include="Resources\minus_flat_white.png" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Fody" Version="6.2.6">
+    <PackageReference Include="Fody" Version="6.3.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
-    <PackageReference Include="PropertyChanged.Fody" Version="3.2.9" />
+    <PackageReference Include="PropertyChanged.Fody" Version="3.3.0" />
   </ItemGroup>
 </Project>
