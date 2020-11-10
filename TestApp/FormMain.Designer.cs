@@ -189,12 +189,12 @@
             this.messageBoxExpandStack.LabelDialogCounterBackColor = System.Drawing.SystemColors.Control;
             this.messageBoxExpandStack.LabelDialogCounterFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.messageBoxExpandStack.LabelDialogCounterForeColor = System.Drawing.SystemColors.ControlText;
-            this.messageBoxExpandStack.Location = new System.Drawing.Point(6, 273);
+            this.messageBoxExpandStack.Location = new System.Drawing.Point(6, 276);
             this.messageBoxExpandStack.MessageBoxContainerControlExpandSize = new System.Drawing.Size(650, 250);
             this.messageBoxExpandStack.Name = "messageBoxExpandStack";
             this.messageBoxExpandStack.OpenDownWards = false;
             this.messageBoxExpandStack.Padding = new System.Windows.Forms.Padding(2);
-            this.messageBoxExpandStack.Size = new System.Drawing.Size(216, 30);
+            this.messageBoxExpandStack.Size = new System.Drawing.Size(216, 27);
             this.messageBoxExpandStack.TabIndex = 0;
             this.messageBoxExpandStack.MessageBoxClosed += new VPKSoft.MessageBoxExtended.Controls.MessageBoxControlBase.OnDialogBoxClosed(this.messageBoxExpandStack_MessageBoxClosed);
             // 

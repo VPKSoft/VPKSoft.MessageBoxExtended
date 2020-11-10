@@ -620,14 +620,14 @@
   <data name="messageBoxContainerResize.ImageToolStripToggleExpand" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGXSURBVFhHxZc9TsNAEEY33MKnSAeiTYNAEEoKGm5AQ407
-        hBAX4AQIUXAHCnqouQBVCpBAVoiZb+VV1qPZP6+zfNKTknjseevZJLKizIlX4r0wbwR66+btPwEJbSMd
-        LAF6Fxd4tl5HCFT7jdo+/VFTYrIl18RTE8fW+wiB+mOpbttWMz3/FmvCrAg0RxIFTHMwu/gUa8Kg+YRA
-        iguYlZsEBKqDpnfbJerFSs2ul73zZHhzJCCADSc15Rw9Nr3z+tgz5wkIYLdLDTmHDz4Be+Y8AQF81bDb
-        MW9gNz25X+jPdi+/VLWDVa7PW+NauclGN2GoOZIogA1nBLByqcY/c55EAex2bDjM3H/bXTPnSRQIE7ty
-        k1EFUpsjowikzJxnFIGUmfNkCwxduUmWQG5zZJBAzsx5Bgk4Z/6r1BP9Lb74oAucdeVIsoB35VRAP5F+
-        SPKuK0eSBIK3nYrEpjZDBKJnThe/QQMfdLG9rhyJEnDOfIQEBaJWnhGvAB4aULBJrginQGm0AB4QpYMl
-        wIOxfkSGBGxKQs3V/A9nm0SQ+RkbKAAAAABJRU5ErkJggg==
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVFhHxZcxTsMwFIZdbpFTdEEgVhYEqsrIwMINWJjJ
+        xoC4ACdAiIE7dGCHFRZOwAASKCoN77di1bGe/ew4Nb/0SW3zkvc5z20VRZkTz8RbYV4I9NbN238CEtqG
+        O1gC9C4usLBeRwhUh43aOf1RU2KyxdfEUxPH1vsIgfp1qW7aVjM9/2ZrZFYEmiOJAqY52L/4ZGtk0HxC
+        IMUFzMpNBIHqqOnddo76faW262XvPB63OSIIYMNxTV1mD03vvD72zN0IAtjtXEOX2X1IwJ65G0EAXzXs
+        dswb2E1P7j70Z3uXX6raxSrX563xrdxko5tQao4kCmDDGQGsnKsJz9xNogB2OzYcZh6+7b6Zu0kUkIld
+        ucmoAqnNkVEEUmbuZhSBlJm7yRYYunKTLIHc5sgggZyZuxkk4J35r1KP9Lf4FIIucNaVI8kCwZVTAf1E
+        hiHJ264cSRIQbzsVsU1thghEz5wufo0GIehiB105EiXgnfkIEQWiVp6RoAAeGlCwSa4Ir0BptAAeELmD
+        JcCDsX5EhgRsSkLN1fwP5YtEKNMEbIEAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="messageBoxExpandStack.ImageOpenDownwards" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

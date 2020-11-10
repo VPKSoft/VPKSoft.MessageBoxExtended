@@ -31,6 +31,7 @@ namespace VPKSoft.MessageBoxExtended.Controls
             Disposed += messageBoxExpandStack_Disposed;
             lbText.Text = Name;
             base.BackColor = SystemColors.ControlDark;
+            tlpMain.BackColor = SystemColors.Control;
         }
 
         /// <summary>

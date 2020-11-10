@@ -28,6 +28,7 @@ using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using VPKSoft.MessageBoxExtended;
+using VPKSoft.MessageBoxExtended.Controls;
 
 namespace TestApp
 {
