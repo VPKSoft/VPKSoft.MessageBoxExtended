@@ -589,7 +589,7 @@ namespace VPKSoft.MessageBoxExtended
         {
             get
             {
-                instanceId = instanceId ?? _id++;
+                instanceId ??= _id++;
                 return (ulong)instanceId;
             }
         }
@@ -641,7 +641,7 @@ namespace VPKSoft.MessageBoxExtended
         /// Gets the currently existing <see cref="MessageBoxBase"/> instances.
         /// </summary>
         /// <value>The currently existing <see cref="MessageBoxBase"/> instances.</value>
-        public List<MessageBoxBase> MessageBoxInstances { get; } = new List<MessageBoxBase>();
+        public static List<MessageBoxBase> MessageBoxInstances { get; } = new List<MessageBoxBase>();
 
         /// <summary>
         /// Gets or sets a value indicating whether to close the <see cref="MessageBoxBase"/> message box on button click.

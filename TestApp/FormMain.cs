@@ -34,6 +34,8 @@ namespace TestApp
 {
     public partial class FormMain : Form
     {
+        Timer closeTimer = new Timer();
+        
         public FormMain()
         {
             InitializeComponent();
@@ -42,6 +44,15 @@ namespace TestApp
             ListDialogTypes();
             ListDialogButtons();
             cmbLocale.SelectedIndex = 1;
+            closeTimer.Interval = 5000;
+            closeTimer.Tick += (sender, args) =>
+            {
+                closeTimer.Enabled = false;
+                MessageBoxExtendedControl.CloseAllBoxesWithResult(DialogResultExtended.Cancel);
+                closeTimer.Enabled = true;
+            };
+
+            closeTimer.Enabled = true;
         }
 
         private void ListDialogTypes()
