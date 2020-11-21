@@ -6,9 +6,9 @@
     <Product>VPKSoft.MessageBoxExtended</Product>
     <Description>An extented message box for a Windows Forms applications.</Description>
     <Copyright>Copyright © VPKSoft 2020</Copyright>
-    <Version>1.0.2</Version>
-    <AssemblyVersion>1.0.2.0</AssemblyVersion>
-    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.3</Version>
+    <AssemblyVersion>1.0.3.0</AssemblyVersion>
+    <FileVersion>1.0.3.0</FileVersion>
     <DocumentationFile>bin\$(Configuration)\VPKSoft.MessageBoxExtended.xml</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>VPKSoft</Authors>
