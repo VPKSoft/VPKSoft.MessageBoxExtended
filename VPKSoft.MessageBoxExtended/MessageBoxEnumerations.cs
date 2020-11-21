@@ -181,4 +181,55 @@ namespace VPKSoft.MessageBoxExtended
         /// </summary>
         YesNoNoToAllRememberChecked,
     }
+
+    /// <summary>
+    /// An enumeration for the default button for the extended message box.
+    /// </summary>
+    public enum ExtendedDefaultButtons
+    {
+        /// <summary>
+        /// The default button is the button 1.
+        /// </summary>
+        Button1 = 0,
+
+        /// <summary>
+        /// The default button is the button 2.
+        /// </summary>
+        Button2 = 1,
+
+        /// <summary>
+        /// The default button is the button 3.
+        /// </summary>
+        Button3 = 2,
+
+        /// <summary>
+        /// The default button is the button 4.
+        /// </summary>
+        Button4 = 3,
+
+        /// <summary>
+        /// The default button is the button 5.
+        /// </summary>
+        Button5 = 4,
+
+        /// <summary>
+        /// The default button is the button 6.
+        /// </summary>
+        Button6 = 5,
+
+        /// <summary>
+        /// The default button is the button 7.
+        /// </summary>
+        Button7 = 6,
+
+        /// <summary>
+        /// The default button is the button 8.
+        /// </summary>
+        Button8 = 7,
+
+        /// <summary>
+        /// The default button is the button 9.
+        /// </summary>
+        Button9 = 8,
+    }
 }

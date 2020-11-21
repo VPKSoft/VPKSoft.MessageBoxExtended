@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net47</TargetFrameworks>
     <AssemblyTitle>VPKSoft.MessageBoxExtended</AssemblyTitle>
     <Company>VPKSoft</Company>
     <Product>VPKSoft.MessageBoxExtended</Product>
@@ -22,12 +22,12 @@
     <RepositoryType>git</RepositoryType>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugType>full</DebugType>
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netcoreapp3.1|AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-  </PropertyGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
+    <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
+  </ItemGroup>
   <ItemGroup>
     <None Remove="VPKSoft.MessageBoxExtended.1.0.0.1.nupkg" />
     <None Remove="VPKSoft.MessageBoxExtended.1.0.0.2.nupkg" />
@@ -39,7 +39,7 @@
     <None Remove="VPKSoft.MessageBoxExtended.1.0.0.8.nupkg" />
     <None Remove="VPKSoft.MessageBoxExtended.1.0.0.nupkg" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />

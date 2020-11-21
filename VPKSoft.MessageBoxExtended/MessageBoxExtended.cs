@@ -56,9 +56,10 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
         public MessageBoxExtended(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic,
-            Action<DialogResultExtended, bool, object> dialogResultAction)
+            Action<DialogResultExtended, bool, object> dialogResultAction, ExtendedDefaultButtons defaultButton)
         {
             InitializeComponent();
             var dialogButtons = CreateButtons(buttons);
@@ -70,6 +71,8 @@ namespace VPKSoft.MessageBoxExtended
                 flpButtons.Controls.Add(dialogButton);
                 dialogButton.UseMnemonic = useMnemonic; // set the (stupid) mnemonic value..
             }
+
+            DefaultButton = defaultButton;
 
             cbRememberAnswer.Text = TextRemember;
             lbText.Text = text;
@@ -89,7 +92,25 @@ namespace VPKSoft.MessageBoxExtended
         public MessageBoxExtended(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic,
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
-            GetMessageBoxIcon(icon), useMnemonic, dialogResultAction)
+            GetMessageBoxIcon(icon), useMnemonic, dialogResultAction, default)
+        {
+            MessageBoxType = GetTypeFromIconEnumeration(icon);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="dialogResultAction">An optional <see cref="Action{DialogResultExtended, Boolean, Object}"/> action to call upon returning from the dialog.</param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
+        public MessageBoxExtended(string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic,
+            Action<DialogResultExtended, bool, object> dialogResultAction, ExtendedDefaultButtons defaultButton) : this(text, caption, buttons,
+            GetMessageBoxIcon(icon), useMnemonic, dialogResultAction, defaultButton)
         {
             MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
@@ -105,7 +126,7 @@ namespace VPKSoft.MessageBoxExtended
         public MessageBoxExtended(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon,
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons,
-            GetMessageBoxIcon(icon), true, dialogResultAction)
+            GetMessageBoxIcon(icon), true, dialogResultAction, default)
         {
             MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
@@ -121,7 +142,7 @@ namespace VPKSoft.MessageBoxExtended
         public MessageBoxExtended(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon,
             Action<DialogResultExtended, bool, object> dialogResultAction) : this(text, caption, buttons, icon, true,
-            dialogResultAction)
+            dialogResultAction, default)
         {
         }
 
@@ -134,7 +155,8 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         public MessageBoxExtended(string text, string caption,
-            MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic) : this(text, caption, buttons, icon, useMnemonic, null)
+            MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic) : this(text, caption, buttons, icon,
+            useMnemonic, null, default)
         {
         }
 
@@ -148,7 +170,7 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
         public MessageBoxExtended(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic) : this(text, caption, buttons,
-            GetMessageBoxIcon(icon), useMnemonic, null)
+            GetMessageBoxIcon(icon), useMnemonic, null, default)
         {
             MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
@@ -162,7 +184,22 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box. </param>
         public MessageBoxExtended(string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon) : this(text, caption, buttons,
-            GetMessageBoxIcon(icon), true, null)
+            GetMessageBoxIcon(icon), true, null, default)
+        {
+            MessageBoxType = GetTypeFromIconEnumeration(icon);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
+        public MessageBoxExtended(string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, ExtendedDefaultButtons defaultButton) : this(text, caption, buttons,
+            GetMessageBoxIcon(icon), true, null, defaultButton)
         {
             MessageBoxType = GetTypeFromIconEnumeration(icon);
         }
@@ -176,7 +213,21 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         public MessageBoxExtended(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon) : this(text, caption, buttons, icon, true,
-            null)
+            null, default)
+        {
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the message box with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
+        public MessageBoxExtended(string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, ExtendedDefaultButtons defaultButton) : this(text, caption, buttons, icon, true,
+            null, defaultButton)
         {
         }
         #endregion
@@ -192,16 +243,17 @@ namespace VPKSoft.MessageBoxExtended
         /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
         /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
         /// <param name="useMnemonic">A value indicating whether the first character that is preceded by an ampersand (&amp;) is used as the mnemonic key for the buttons within the dialog.</param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
         /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
-            MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic)
+            MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic, ExtendedDefaultButtons defaultButton)
         {
             if (LocalizeOnCreate)
             {
                 Localize();
             }
 
-            using (var messageBoxExtended = new MessageBoxExtended(text, caption, buttons, icon, useMnemonic, null))
+            using (var messageBoxExtended = new MessageBoxExtended(text, caption, buttons, icon, useMnemonic, null, defaultButton))
             {
                 if (owner == null)
                 {
@@ -231,7 +283,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon, bool useMnemonic)
         {
-            return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic);
+            return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -248,7 +300,25 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
             MessageBoxButtonsExtended buttons, MessageBoxIcon icon)
         {
-            return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true);
+            return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true, ExtendedDefaultButtons.Button1);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:VPKSoft.MessageBoxExtended.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box. </param>
+        /// <returns>One of the <see cref="T:VPKSoft.MessageBoxExtended.DialogResultExtended" /> values.</returns>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
+        // ReSharper disable once UnusedMember.Global
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxButtonsExtended buttons, MessageBoxIcon icon, ExtendedDefaultButtons defaultButton)
+        {
+            return Show(owner, text, caption, buttons, GetMessageBoxIcon(icon), true, defaultButton);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -265,7 +335,24 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption, MessageBoxButtonsExtended buttons,
             MessageBoxIcon icon, bool useMnemonic)
         {
-            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic);
+            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, ExtendedDefaultButtons.Button1);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:VPKSoft.MessageBoxExtended.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Windows.Forms.MessageBoxIcon" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
+        /// <returns>One of the <see cref="T:VPKSoft.MessageBoxExtended.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global
+        public static DialogResultExtended Show(string text, string caption, MessageBoxButtonsExtended buttons,
+            MessageBoxIcon icon, ExtendedDefaultButtons defaultButton)
+        {
+            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, defaultButton);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -281,7 +368,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption, MessageBoxButtonsExtended buttons,
             MessageBoxIcon icon)
         {
-            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true);
+            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -298,7 +385,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic)
         {
-            return Show(null, text, caption, buttons, icon, useMnemonic);
+            return Show(null, text, caption, buttons, icon, useMnemonic, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -314,7 +401,59 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon)
         {
-            return Show(null, text, caption, buttons, icon, true);
+            return Show(null, text, caption, buttons, icon, true, ExtendedDefaultButtons.Button1);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global
+        public static DialogResultExtended Show(string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, ExtendedDefaultButtons defaultButton)
+        {
+            return Show(null, text, caption, buttons, icon, true, defaultButton);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <param name="defaultButton">One of the <see cref="ExtendedDefaultButtons"/> values that specifies the default button for the message box.</param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon, ExtendedDefaultButtons defaultButton)
+        {
+            return Show(owner, text, caption, buttons, icon, true, defaultButton);
+        }
+
+        // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
+        /// <summary>
+        /// Displays an extended message box in front of the specified object and with the specified text, caption, buttons, and icon.
+        /// </summary>
+        /// <param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+        /// <param name="text">The text to display in the message box.</param>
+        /// <param name="caption">The text to display in the title bar of the message box.</param>
+        /// <param name="buttons">One of the <see cref="T:ScriptNotepad.DialogForms.MessageBoxButtonsExtended" /> values that specifies which buttons to display in the message box. </param>
+        /// <param name="icon">One of the <see cref="T:System.Drawing.Image" /> values that specifies which icon to display in the message box. </param>
+        /// <returns>One of the <see cref="T:ScriptNotepad.DialogForms.DialogResultExtended" /> values.</returns>
+        // ReSharper disable once UnusedMember.Global
+        public static DialogResultExtended Show(IWin32Window owner, string text, string caption,
+            MessageBoxButtonsExtended buttons, Image icon)
+        {
+            return Show(owner, text, caption, buttons, icon, true, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -338,7 +477,7 @@ namespace VPKSoft.MessageBoxExtended
                 Localize();
             }
 
-            using (var messageBoxExtended = new MessageBoxExtended(text, caption, buttons, icon, useMnemonic, dialogResultAction))
+            using (var messageBoxExtended = new MessageBoxExtended(text, caption, buttons, icon, useMnemonic, dialogResultAction, default))
             {
                 if (owner == null)
                 {
@@ -468,7 +607,6 @@ namespace VPKSoft.MessageBoxExtended
         #endregion
 
         #region PrivateMethods
-
         private static MessageBoxType GetTypeFromIconEnumeration(MessageBoxIcon icon)
         {
             switch (icon)

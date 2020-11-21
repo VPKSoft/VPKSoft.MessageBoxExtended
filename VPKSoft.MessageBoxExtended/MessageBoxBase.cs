@@ -29,6 +29,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace VPKSoft.MessageBoxExtended
@@ -74,6 +75,41 @@ namespace VPKSoft.MessageBoxExtended
             Shown -= messageBoxBase_Shown;
             VisibleChanged -= messageBoxBase_VisibleChanged;            
             MessageBoxInstances.Remove(this);
+        }
+
+        private void MessageBoxBase_Shown_1(object sender, EventArgs e)
+        {
+            FocusDefaultButton();
+        }
+        #endregion
+
+        #region InternalMethods
+        /// <summary>
+        /// Focuses the dialog box to the default button.
+        /// </summary>
+        internal void FocusDefaultButton()
+        {
+            try
+            {
+                var controlsArray = new Control[flpButtons.Controls.Count];
+
+                flpButtons.Controls.CopyTo(controlsArray, 0);
+
+                var controls = new List<Control>(controlsArray);
+
+                controls = controls.OrderBy(f => f.Left).ToList();
+
+                var focusControlIndex = controls.Count % (int) defaultButton;
+
+                if (Visible && controls.Count > 0 && controls[focusControlIndex].Visible)
+                {
+                    controls[focusControlIndex].Focus();
+                }
+            }
+            catch
+            {
+                // nothing to do here..
+            }
         }
         #endregion
 
@@ -519,7 +555,24 @@ namespace VPKSoft.MessageBoxExtended
 
         private static ulong _id = 1;
 
-        #region PublicProperties        
+        #region PublicProperties
+        private ExtendedDefaultButtons defaultButton;
+
+        /// <summary>
+        /// Gets or sets the default button (the button which initially has the focus).
+        /// </summary>
+        /// <value>The default button.</value>
+        public ExtendedDefaultButtons DefaultButton
+        {
+            get => defaultButton;
+
+            set
+            {
+                defaultButton = value;
+                FocusDefaultButton();
+            }
+        }
+
         /// <summary>
         /// Gets or sets the type of the message box.
         /// </summary>

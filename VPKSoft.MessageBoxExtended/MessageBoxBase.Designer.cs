@@ -82,6 +82,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "MessageBoxBase";
+            this.Shown += new System.EventHandler(this.MessageBoxBase_Shown_1);
             ((System.ComponentModel.ISupportInitialize)(this.pbMessageBoxIcon)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
