@@ -6,9 +6,9 @@
     <Product>VPKSoft.MessageBoxExtended</Product>
     <Description>An extented message box for a Windows Forms applications.</Description>
     <Copyright>Copyright © VPKSoft 2020</Copyright>
-    <Version>1.0.4</Version>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
+    <Version>1.0.5</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
     <DocumentationFile>bin\$(Configuration)\VPKSoft.MessageBoxExtended.xml</DocumentationFile>
     <OutputPath>bin\$(Configuration)\</OutputPath>
     <Authors>VPKSoft</Authors>
@@ -28,17 +28,6 @@
   </PropertyGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp3.1' ">
     <FrameworkReference Include="Microsoft.WindowsDesktop.App.WindowsForms" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.1.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.2.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.3.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.4.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.5.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.6.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.7.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.8.nupkg" />
-    <None Remove="VPKSoft.MessageBoxExtended.1.0.0.nupkg" />
   </ItemGroup>
   <ItemGroup Condition=" '$(TargetFramework)' == 'net47' ">
     <Reference Include="System.Windows.Forms" />

@@ -420,30 +420,30 @@ namespace VPKSoft.MessageBoxExtended
                     break;
 
                 case MessageBoxButtonsExtended.AbortRetryIgnore:
-                    uiButtons.Add(ButtonAbort);
-                    uiButtons.Add(ButtonRetry);
                     uiButtons.Add(ButtonIgnore);
+                    uiButtons.Add(ButtonRetry);
+                    uiButtons.Add(ButtonAbort);
                     break;
 
                 case MessageBoxButtonsExtended.OKCancel:
-                    uiButtons.Add(ButtonOk);
                     uiButtons.Add(ButtonCancel);
+                    uiButtons.Add(ButtonOk);
                     break;
 
                 case MessageBoxButtonsExtended.RetryCancel:
-                    uiButtons.Add(ButtonRetry);
                     uiButtons.Add(ButtonCancel);
+                    uiButtons.Add(ButtonRetry);
                     break;
 
                 case MessageBoxButtonsExtended.YesNo:
-                    uiButtons.Add(ButtonYes);
                     uiButtons.Add(ButtonNo);
+                    uiButtons.Add(ButtonYes);
                     break;
 
                 case MessageBoxButtonsExtended.YesNoCancel:
-                    uiButtons.Add(ButtonYes);
-                    uiButtons.Add(ButtonNo);
                     uiButtons.Add(ButtonCancel);
+                    uiButtons.Add(ButtonNo);
+                    uiButtons.Add(ButtonYes);
                     break;
             }
 
