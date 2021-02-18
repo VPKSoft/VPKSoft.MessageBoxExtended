@@ -2,7 +2,7 @@
 /*
 MIT License
 
-Copyright(c) 2020 Petteri Kautonen
+Copyright(c) 2021 Petteri Kautonen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -288,16 +288,9 @@ namespace VPKSoft.MessageBoxExtended
             }
 
             using (var messageBoxExtended = new MessageBoxQueryPassword(text, caption, icon, useMnemonic,
-                givenPasswordInvalid, showPasswordStrength, password, dialogResultAction)) 
+                givenPasswordInvalid, showPasswordStrength, password, dialogResultAction))
             {
-                if (owner == null)
-                {
-                    messageBoxExtended.ShowDialog();
-                }
-                else
-                {
-                    messageBoxExtended.ShowDialog(owner);
-                }
+                messageBoxExtended.ShowDialog(owner ?? DefaultOwner);
 
                 return messageBoxExtended.Result != DialogResultExtended.OK ? null : messageBoxExtended.tbPassword.Text;
             }

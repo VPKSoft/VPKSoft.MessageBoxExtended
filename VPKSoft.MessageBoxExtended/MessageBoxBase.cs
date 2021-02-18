@@ -2,7 +2,7 @@
 /*
 MIT License
 
-Copyright(c) 2020 Petteri Kautonen
+Copyright(c) 2021 Petteri Kautonen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -552,6 +552,14 @@ namespace VPKSoft.MessageBoxExtended
             }
         }
         #endregion
+
+        //<param name="owner">An implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box.</param>
+
+        /// <summary>
+        /// A default implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box in case the owner not defined.
+        /// </summary>
+        /// <value>The default implementation of <see cref="T:System.Windows.Forms.IWin32Window" /> that will own the modal dialog box in case the owner not defined.</value>
+        public static IWin32Window DefaultOwner { get; set; }
 
         private static ulong _id = 1;
 

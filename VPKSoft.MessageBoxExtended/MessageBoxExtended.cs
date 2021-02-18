@@ -2,7 +2,7 @@
 /*
 MIT License
 
-Copyright(c) 2020 Petteri Kautonen
+Copyright(c) 2021 Petteri Kautonen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -255,14 +255,7 @@ namespace VPKSoft.MessageBoxExtended
 
             using (var messageBoxExtended = new MessageBoxExtended(text, caption, buttons, icon, useMnemonic, null, defaultButton))
             {
-                if (owner == null)
-                {
-                    messageBoxExtended.ShowDialog();
-                }
-                else
-                {
-                    messageBoxExtended.ShowDialog(owner);
-                }
+                messageBoxExtended.ShowDialog(owner ?? DefaultOwner);
 
                 return messageBoxExtended.Result;
             }
@@ -335,7 +328,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption, MessageBoxButtonsExtended buttons,
             MessageBoxIcon icon, bool useMnemonic)
         {
-            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, ExtendedDefaultButtons.Button1);
+            return Show(DefaultOwner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -352,7 +345,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption, MessageBoxButtonsExtended buttons,
             MessageBoxIcon icon, ExtendedDefaultButtons defaultButton)
         {
-            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, defaultButton);
+            return Show(DefaultOwner, text, caption, buttons, GetMessageBoxIcon(icon), true, defaultButton);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -368,7 +361,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption, MessageBoxButtonsExtended buttons,
             MessageBoxIcon icon)
         {
-            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, ExtendedDefaultButtons.Button1);
+            return Show(DefaultOwner, text, caption, buttons, GetMessageBoxIcon(icon), true, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -385,7 +378,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic)
         {
-            return Show(null, text, caption, buttons, icon, useMnemonic, ExtendedDefaultButtons.Button1);
+            return Show(DefaultOwner, text, caption, buttons, icon, useMnemonic, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -401,7 +394,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon)
         {
-            return Show(null, text, caption, buttons, icon, true, ExtendedDefaultButtons.Button1);
+            return Show(DefaultOwner, text, caption, buttons, icon, true, ExtendedDefaultButtons.Button1);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -418,7 +411,7 @@ namespace VPKSoft.MessageBoxExtended
         public static DialogResultExtended Show(string text, string caption,
             MessageBoxButtonsExtended buttons, Image icon, ExtendedDefaultButtons defaultButton)
         {
-            return Show(null, text, caption, buttons, icon, true, defaultButton);
+            return Show(DefaultOwner, text, caption, buttons, icon, true, defaultButton);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -477,19 +470,10 @@ namespace VPKSoft.MessageBoxExtended
                 Localize();
             }
 
-            using (var messageBoxExtended = new MessageBoxExtended(text, caption, buttons, icon, useMnemonic, dialogResultAction, default))
-            {
-                if (owner == null)
-                {
-                    messageBoxExtended.ShowDialog();
-                }
-                else
-                {
-                    messageBoxExtended.ShowDialog(owner);
-                }
+            using var messageBoxExtended = new MessageBoxExtended(text, caption, buttons, icon, useMnemonic, dialogResultAction, default);
+            messageBoxExtended.ShowDialog(owner ?? DefaultOwner);
 
-                return messageBoxExtended.Result;
-            }
+            return messageBoxExtended.Result;
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -547,7 +531,7 @@ namespace VPKSoft.MessageBoxExtended
             MessageBoxIcon icon, bool useMnemonic,
             Action<DialogResultExtended, bool, object> dialogResultAction)
         {
-            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, dialogResultAction);
+            return Show(DefaultOwner, text, caption, buttons, GetMessageBoxIcon(icon), useMnemonic, dialogResultAction);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -565,7 +549,7 @@ namespace VPKSoft.MessageBoxExtended
             MessageBoxIcon icon,
             Action<DialogResultExtended, bool, object> dialogResultAction)
         {
-            return Show(null, text, caption, buttons, GetMessageBoxIcon(icon), true, dialogResultAction);
+            return Show(DefaultOwner, text, caption, buttons, GetMessageBoxIcon(icon), true, dialogResultAction);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -584,7 +568,7 @@ namespace VPKSoft.MessageBoxExtended
             MessageBoxButtonsExtended buttons, Image icon, bool useMnemonic,
             Action<DialogResultExtended, bool, object> dialogResultAction)
         {
-            return Show(null, text, caption, buttons, icon, useMnemonic, dialogResultAction);
+            return Show(DefaultOwner, text, caption, buttons, icon, useMnemonic, dialogResultAction);
         }
 
         // Documentation: (©): Microsoft (copy/paste) documentation with modifications (by VPKSoft)....
@@ -602,7 +586,7 @@ namespace VPKSoft.MessageBoxExtended
             MessageBoxButtonsExtended buttons, Image icon,
             Action<DialogResultExtended, bool, object> dialogResultAction)
         {
-            return Show(null, text, caption, buttons, icon, true, dialogResultAction);
+            return Show(DefaultOwner, text, caption, buttons, icon, true, dialogResultAction);
         }
         #endregion
 

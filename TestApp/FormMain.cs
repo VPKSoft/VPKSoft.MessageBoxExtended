@@ -2,7 +2,7 @@
 /*
 MIT License
 
-Copyright(c) 2020 Petteri Kautonen
+Copyright(c) 2021 Petteri Kautonen
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -167,7 +167,7 @@ namespace TestApp
         private void btTestErrorMessage_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
-                MessageBoxExtended.Show(this, "Testing catastrophic failure message!", "Testing..",
+                MessageBoxExtended.Show(null, "Testing catastrophic failure message!", "Testing..",
                     MessageBoxButtonsExtended.YesNoYesToAllRememberNoToAllRemember,
                     MessageBoxIcon.Hand).ToString());
         }
